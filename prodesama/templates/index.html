@@ -14,11 +14,11 @@
                 <th>Bandera</th>
                 <th>Puntaje</th>
             </tr>
-            {% for county in countries_list %}
+            {% for team in team_list %}
                 <tr>
-                    <td>{{ country.name }}</td>
-                    <td>{{ country.flag }}</td>
-                    <td>0</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.flag }}</td>
+                    <td>{{ team.score }}</td>
                 </tr>
             {% endfor %}
         </table>
