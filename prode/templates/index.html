@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title is-1">Lista de países</h1>
+        <table class="table is-striped">
+            <tr>
+                <th>Pais</th>
+                <th>Bandera</th>
+                <th>Puntaje</th>
+            </tr>
+            {% for team in team_list %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.flag }}</td>
+                    <td>{{ team.score }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
