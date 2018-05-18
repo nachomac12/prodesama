@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
             {% for team in team_list %}
                 <tr>
                     <td>{{ team.name }}</td>
-                    <td>{{ team.flag }}</td>
+                    <td><img src="{% static 'prode/images/' %}{{ team.flag }}" alt="Bandera"></td>
                     <td>{{ team.score }}</td>
                 </tr>
             {% endfor %}
