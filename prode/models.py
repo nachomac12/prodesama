@@ -14,8 +14,9 @@ class Match(models.Model):
     team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='+')
     team1_score = models.PositiveIntegerField(default=0)
     team2_score = models.PositiveIntegerField(default=0)
-    print(str(team1))
-
+    def __str__(self):
+        return (self.team1.name + " vs " + self.team2.name)
+        
 class Bet(models.Model):
     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='+')
     team1_score = models.PositiveIntegerField(default=0)
