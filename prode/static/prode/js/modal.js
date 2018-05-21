@@ -3,7 +3,7 @@ const Modal = (function () {
 // Abre el modal
 
 function open($modal) {
-    const singUpTitle = document.getElementById('sign-up');
+    const signUpTitle = document.getElementById('sign-up');
     const signInTitle = document.getElementById('sign-in');
     const saveButton = document.getElementById('save-button');
     const logInButton = document.getElementById('log-in-button');
