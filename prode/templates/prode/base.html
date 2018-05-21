@@ -16,14 +16,17 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item" href="#">SIGN IN</a>
+                <a class="navbar-item" href="#" onclick="open()">SIGN IN</a>
                 <a class="navbar-item" href="#">SIGN UP</a>
             </div>
         </div>
     </nav>
-    
+
 
     {% block body_block %}
     <!-- Anything outside of this will be inherited if you extend !-->
     {% endblock %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script src="{% static 'prode/js/modal.js' %}"></script>
+</html>
