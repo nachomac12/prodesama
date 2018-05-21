@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <!-- Cabecera del modal (HEADER) -->
+        <header>
+            <section class="modal-card-head">
+                <p id="sign-up" class="modal-card-title">Sign up</p>
+                <p id="sign-in" class="modal-card-title">Sign in</p>
+                <button class="delete" aria-label="close" onclick="refs.modal.close()"></button>
+            </section>
+        </header>)
+        <!-- Cuerpo del modal (BODY) -->
+        <section class="modal-class-body">
+            <!--ARMAR DISEÑO DEL SIGN-IN - SIGN-UP | ARMAR LA LOGICA CON LUIS | PODRIA SER UN IF EN JS-->
+            <!-- LUIFA TE COPY PASTEE EL LOGIN-->
+            <div class="container">
+                <h1 class="title is-1">Login</h1>
+                <h2 class="subtitle is-2">¡Logueate al prode boludo!</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </form>
+            </div>
+        </section>
+        <!-- Pie del modal (FOOTER) -->
+        <section>
+            <footer class="modal-card-foot">
+                <button id="save-button" class="button is-success">Register</button>    
+                <button id="log-in-button" class="button is-success">Log-in</button>
+                <button class="button">Cancelar</button>
+            </footer>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+        <script src="{% static 'prode/js/modal.js' %}"></script>
