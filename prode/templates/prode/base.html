@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+            <img src="{% static 'prode/images/prodelogo.png' %}" alt="PRODESAMA" width="112" height="28">
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="#">SIGN IN</a>
+                <a class="navbar-item" href="#">SIGN UP</a>
+            </div>
+        </div>
+    </nav>
+
+    {% block body_block %}
+    <!-- Anything outside of this will be inherited if you extend !-->
+    {% endblock %}
+</body>
