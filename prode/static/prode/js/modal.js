@@ -1,24 +1,9 @@
-const Modal = (function () {
-
-// Abre el modal
-
-function open($modal) {
-    const signUpTitle = document.getElementById('sign-up');
-    const signInTitle = document.getElementById('sign-in');
-    const saveButton = document.getElementById('save-button');
-    const logInButton = document.getElementById('log-in-button');
-
-    $modal.classList.add('is-active');
-    signUpTitle.classList.add('is-active');
-    saveButton.classList.add('is-active');
-    signInTitle.classList.add('is-hidden');
-    logInButton.classList.add('is-hidden');
+var modal = document.getElementById('modal');
+var elements = document.getElementsByClassName('toggle-modal');
+for (var i = 0; i < elements.length; i++) {
+  elements[i].addEventListener('click', toggleClass);
 }
 
-// Cierra el modal
-function close($modal) {    
-    $modal.classList.remove('is-active');
+function toggleClass() {
+  modal.classList.toggle('is-active');
 }
-
-
-})();
