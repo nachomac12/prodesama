@@ -1,9 +1,24 @@
 var modal = document.getElementById('modal');
-var elements = document.getElementsByClassName('toggle-modal');
-for (var i = 0; i < elements.length; i++) {
-  elements[i].addEventListener('click', toggleClass);
+
+const signUpTitle = document.getElementById('sign-up');
+const signInTitle = document.getElementById('sign-in');
+
+//Abro el modal según lo que quiera hacer, ya sea register o login
+function chooseModal(option) {
+  modal.classList.add('is-active');
+  switch (option) {
+        case 'register':
+            signUpTitle.classList.add('is-active');
+            signInTitle.classList.add('is-hidden');
+            break;
+        case 'login':
+            signUpTitle.classList.add('is-hidden');
+            signInTitle.classList.add('is-active');
+            break;
+    } 
 }
 
-function toggleClass() {
-  modal.classList.toggle('is-active');
+//Cierra el modal
+function closeModal() {
+  modal.classList.remove('is-active');
 }

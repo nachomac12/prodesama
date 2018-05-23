@@ -19,22 +19,22 @@
         </div>
         <div class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item toggle-modal">Sign In</a>
-                <a class="navbar-item toggle-modal">Sign Up</a>
+                <a class="navbar-item" onclick="chooseModal('login')">Sign In</a>
+                <a class="navbar-item" onclick="chooseModal('register')">Sign Up</a>
                 <div class="modal" id="modal">
                     <div class="modal-background"></div>
                     <div class="modal-card">
                         <header class="modal-card-head">
-                            <p class="modal-card-title" id='login'>Login</p>
-                            <p class="modal-card-title" id='register'>Register</p>
-                            <button class="delete toggle-modal"></button>
+                            <p class="modal-card-title" id='sign-in'>Login</p>
+                            <p class="modal-card-title" id='sign-up'>Register</p>
+                            <button class="delete" onclick="closeModal()"></button>
                         </header>
                         <section class="modal-card-body">
                             <!-- Content ... -->
                         </section>
                         <footer class="modal-card-foot">
-                            <a class="button is-success toggle-modal">Save changes</a>
-                            <a class="button toggle-modal">Cancel</a>
+                            <a class="button is-success">Save changes</a>
+                            <a class="button">Cancel</a>
                         </footer>
                     </div>
                 </div>
