@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from prode.forms import RegistrationForm
 from .models import Team, Match
 
 class IndexView(generic.ListView):
@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -24,7 +24,7 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(reverse('prode:index'))
-            #return redirect('home')
+            #return redirect('home')    
     else:
-        form = UserCreationForm()
-    return render(request, 'prode/signup.html', {'form': form})
+        form = RegistrationForm()
+        return render(request, 'prode/signup.html', {'form': form})
