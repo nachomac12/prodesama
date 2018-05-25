@@ -2,22 +2,10 @@
 {% load static %}
 {% block body_block %}
 
-<section id="sectionIntro" class="hero is-fullheight" style="background-size: 100%; background: url({% static 'prode/images/pelota.jpg' %})no-repeat center;">
-    <div class="hero-body">
-        <div class="container" >
-        <h1 class="title is-1">¡Ganá puntos con cada apuesta!</h1>
-        <h2 class="subtitle is-2">Si acertás el partido son 3 puntos.</h2>
-        <h2 class="subtitle is-2">Si acertás el resultado exacto duplicás.</h2>
-        </div>
-    </div>
-</section>
-
-<br>
-
 <section class="hero is-light is-large">
-    <div class="container has-text-centered">
+    <div class="container">
         <h1 class="title is-1">Próximos partidos</h1>
-        <table class="table is-striped is-fullwidth">
+        <table class="table is-striped">
             {% for match in match_list %}
                 <tr>
                     <th>{{ match.start|date:'d-m-Y' }}</th>
@@ -25,7 +13,8 @@
                 <tr>
                     <td><img src="{% static 'prode/images/' %}{{ match.team1.flag }}" alt="Bandera"></td>
                     <td>{{ match.team1.name }}</td>
-                    <td>VS</td>
+                    <td><input class="input is-primary is-rounded" type="text" placeholder="Goal"></td>
+                    <td><input class="input is-primary is-rounded" type="text" placeholder="Goal"></td>
                     <td>{{ match.team2.name }}</td>
                     <td><img src="{% static 'prode/images/' %}{{ match.team2.flag }}" alt="Bandera"></td>
                 </tr>
