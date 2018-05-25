@@ -1,25 +1,30 @@
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-
-<section class="hero is-light is-large">
-    <div class="container">
-        <h1 class="title is-1">Próximos partidos</h1>
+    <section class="section is-medium">
+    <div>
+        <form method="post">
+        {% csrf_token %}
         <table class="table is-striped">
-            {% for match in match_list %}
+            {% for bet in bet_list %}
                 <tr>
-                    <th>{{ match.start|date:'d-m-Y' }}</th>
+                    <th>La apuesta finaliza:</th>
+                    <th>{{ bet.match.end|date:'d-m-Y' }}</th>
                 </tr>
                 <tr>
-                    <td><img src="{% static 'prode/images/' %}{{ match.team1.flag }}" alt="Bandera"></td>
-                    <td>{{ match.team1.name }}</td>
-                    <td><input class="input is-primary is-rounded" type="text" placeholder="Goal"></td>
-                    <td><input class="input is-primary is-rounded" type="text" placeholder="Goal"></td>
-                    <td>{{ match.team2.name }}</td>
-                    <td><img src="{% static 'prode/images/' %}{{ match.team2.flag }}" alt="Bandera"></td>
+                    <td><img src="{% static 'prode/images/' %}{{ bet.match.team1.flag }}" alt="Bandera"></td>
+                    <td>{{ bet.match.team1.name }}</td>
+                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team1_score" name"team1_score" value="{{ bet.team1_score }}">
+                    </td>
+                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team2_score" name"team2_score" value="{{ bet.team2_score }}">
+                    </td>
+                    <td>{{ bet.match.team2.name }}</td>
+                    <td><img src="{% static 'prode/images/' %}{{ bet.match.team2.flag }}" alt="Bandera"></td>   
                 </tr>
             {% endfor %}
         </table>
+        <button class="button is-warning" type="submit" value="Bet">Apostar</button>
+        </form>   
     </div>
-</section>
+    </section>
 {% endblock %}
