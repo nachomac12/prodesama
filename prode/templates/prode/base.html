@@ -31,22 +31,58 @@
                         </header>
                         <section class="modal-card-body" id="register-body">      
                             <form method="post">
-                                <label>Usuario</label><br>
-                                <input type="text"><br>
-                                <label>Contraseña</label><br>
-                                <input type="password"><br>
+                                <div class="field">
+                                    <label class="label">Nombre</label>
+                                    <div class="control">
+                                        <input class="input" type="text">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Apellido</label>
+                                    <div class="control">
+                                        <input class="input" type="text">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Nombre de usuario</label>
+                                    <div class="control">
+                                        <input class="input" type="text">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Contraseña</label>
+                                    <div class="control">
+                                        <input class="input" type="password">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Repetir contraseña</label>
+                                    <div class="control">
+                                        <input class="input" type="password">
+                                    </div>
+                                </div>
                             </form>
                         </section>
                         <section class="modal-card-body" id="login-body"> 
                             <form method="post">
-                                {% csrf_token %}
-                                {{ form.as_p }}
+                                <div class="field">
+                                    <label class="label">Usuario</label>
+                                    <div class="control">
+                                        <input class="input" type="password">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Contraseña</label>
+                                    <div class="control">
+                                        <input class="input" type="password">
+                                    </div>
+                                </div>
                             </form>
                         </section>   
                         <footer class="modal-card-foot">
                             <a class="button is-success is-outlined" type"submit" id="register-button">Registrarse</a>
                             <a class="button is-link is-outlined" type="submit" id="login-button">Ingresar</a>
-                            <a class="button">Cancelar</a>
+                            <a class="button" onclick="closeModal()">Cancelar</a>
                         </footer>
                     </div>
                 </div>
