@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.contrib.auth import login, authenticate
 from prode.forms import RegistrationForm
+from django.contrib.auth.models import User
 from .models import Team, Match, Bet
 
 class IndexView(generic.ListView):
@@ -23,7 +24,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect(reverse('prode:index'))
+            return HttpResponseRedirect(reverse('prode:home'))
             #return redirect('home')    
     else:
         form = RegistrationForm()
