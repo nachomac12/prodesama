@@ -1,5 +1,48 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrarse</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>PRODESAMA</title>
+</head>
+<body>    
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label for="id_username">Usuario:</label>
+            <div class="control">
+                <input type="text" name="username" maxlength="150" required id="id_username" autofocus />
+            </div>
+        </div>
+        <div class="field">
+            <label for="id_first_name">Nombre:</label>
+            <div class="control">
+                <input type="text" name="first_name" maxlength="30" id="id_first_name" />
+            </div>
+        </div>
+        <div class="field">
+            <label for="id_last_name">Apellido:</label>
+            <div class="control">
+                <input type="text" name="last_name" maxlength="150" id="id_last_name" />
+            </div>
+        </div>
+        <div class="field">
+            <label for="id_email">Correo electrónico:</label>
+            <div class="control">
+                <input type="email" name="email" id="id_email" required />
+            </div>
+        </div>    
+        <div class="field">
+                <label for="id_password1">Contraseña:</label>
+            <div class="control">
+                    <input type="password" name="password1" id="id_password1" required />
+            </div>
+        </div>
+        <div class="field">
+            <label for="id_password2">Repetir contraseña:</label>
+            <div class="control">
+                <input type="password" name="password2" id="id_password2" required />
+            </div>
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+</body>

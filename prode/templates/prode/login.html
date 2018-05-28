@@ -1,5 +1,24 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Acceder</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <title>PRODESAMA</title>
+</head>
+<body>   
+    <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <label for="id_username">Usuario:</label>
+            <div class="control">
+                <input type="text" name="username" maxlength="254" required id="id_username" autofocus />
+            </div>
+        </div>
+        <div class="field">
+        <label for="id_password">Contraseña:</label>
+            <div class="control">
+                <input type="password" name="password" id="id_password" required />
+            </div>
+        </div>
+        <button type="submit">Acceder</button>
+    </form>
+</body>
