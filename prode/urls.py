@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'prode'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
+    path('', views.MatchView.as_view(), name='index'),
     path('login/', auth_views.login, {'template_name': 'prode/login.html'} ),
     path('login/', auth_views.logout, {'template_name': 'prode/logout.html'}),
     path('signup/', views.signup, name='signup'),

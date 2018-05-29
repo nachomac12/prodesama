@@ -1,19 +1,21 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth import login, authenticate
-from prode.forms import RegistrationForm
+from prode.forms import RegistrationForm, BetForm
 from django.contrib.auth.models import User
 from .models import Team, Match, Bet
 
-class IndexView(generic.ListView):
+
+class MatchView(generic.ListView):
     template_name = 'prode/index.html'
     context_object_name = 'match_list'
 
     def get_queryset(self):
         """Return all existing match on database"""
         return Match.objects.all()
+
 
 def signup(request):
     if request.method == 'POST':
@@ -25,16 +27,29 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(reverse('prode:home'))
-            #return redirect('home')    
+            # return redirect('home')
     else:
         form = RegistrationForm()
         return render(request, 'prode/signup.html', {'form': form})
 
+
 class BetView(generic.ListView):
-    template_name = 'prode/home.html' 
+    template_name = 'prode/home.html'
     context_object_name = 'bet_list'
-    
+
     def get_queryset(self):
         return Bet.objects.all()
 
-    #Armar función POST que guarde en la DB los input de goles
+    #Esta es la vista de la forma BetForm
+    def post_bet(self, request):    
+        form = BetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            team1_score = form.cleaned_data['team1_score']
+            team2_score = form.cleaned_data['team2_score']
+            form = BetForm()
+        args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score}
+        return render(request, self.template_name, args)
+    
+
+

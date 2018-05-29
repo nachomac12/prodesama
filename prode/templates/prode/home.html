@@ -3,7 +3,7 @@
 {% block body_block %}
     <section class="section is-medium">
     <div>
-        <form method="post">
+        <form method="POST">
         {% csrf_token %}
         <table class="table is-striped">
             {% for bet in bet_list %}
@@ -11,20 +11,22 @@
                     <th>La apuesta finaliza:</th>
                     <th>{{ bet.match.end|date:'d-m-Y' }}</th>
                 </tr>
-                <tr>
+                <tr>    
                     <td><img src="{% static 'prode/images/' %}{{ bet.match.team1.flag }}" alt="Bandera"></td>
                     <td>{{ bet.match.team1.name }}</td>
-                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team1_score" name"team1_score" value="{{ bet.team1_score }}">
-                    </td>
-                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team2_score" name"team2_score" value="{{ bet.team2_score }}">
-                    </td>
+                    <!-- Ingreso la forma manualmente (campo a campo para no poner {{form}}) Lo que
+                        interpreto es que como tengo un for que me lista todos los objetos de bet_list
+                        no me está agarrando form porque no es parte de esa lista de objetos (aunque yo 
+                        renderizo todo en este html. -->
+                    <td>{{ form.team1_score }}</td>
+                    <td>{{ form.team2_score }}</td>
                     <td>{{ bet.match.team2.name }}</td>
                     <td><img src="{% static 'prode/images/' %}{{ bet.match.team2.flag }}" alt="Bandera"></td>   
                 </tr>
             {% endfor %}
-        </table>
-        <button class="button is-warning" type="submit" value="Bet">Apostar</button>
-        </form>   
+        </table>   
+        <button class="button is-warning" type="submit">Apostar</button>
+        </form>
     </div>
     </section>
 {% endblock %}
