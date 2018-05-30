@@ -9,4 +9,4 @@ urlpatterns = [
     path('login/', auth_views.logout, {'template_name': 'prode/logout.html'}),
     path('signup/', views.signup, name='signup'),
     path('home/', views.BetView.as_view(), name='home'),
-] 
+    ] 
