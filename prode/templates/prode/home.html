@@ -1,18 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
 <section class="section is-medium">
-    <div>  
-        <form method="POST">    
-        {% for field in form %}
-        {% csrf_token %}
-        <td>{{ field }}</td>
-        {% endfor %}
-       <td><button class="button is-warning" type="submit">Apostar</button></td>
+    <div>
+    <table class="table is-striped is-fullwidth">       
+        <form method="POST">
+        {% csrf_token %}            
+        {% for bet in bets %}
+        <tr>
+        <td>{{ bet.match.team1.name }}</td>  
+        <td>{{ form.team1_score }}</td>
+        <td>{{ form.team2_score }}</td>
+        <td>{{ bet.match.team2.name}} </td>
+       <td><button class="button is-warning" type="submit">Apostar</button></td> 
+        </tr>
         </form>
-    </div>
-    {% for field in bet %}
-    <p>{{ bet.match.team1.name }}</p>
+    </div> 
     {% endfor %}
+    </table>
 </section>
 {% endblock %}

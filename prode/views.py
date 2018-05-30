@@ -34,8 +34,9 @@ class BetView(generic.ListView):
     template_name = 'prode/home.html'
   
     def get(self, request):
+        bets = Bet.objects.all()
         form = BetForm()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'bets': bets})
 
     def post(self, request):  
         form = BetForm(request.POST)
