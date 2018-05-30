@@ -7,7 +7,7 @@ from prode.forms import RegistrationForm
 from .models import Team, Match, Bet
 from .forms import BetForm
 
-class IndexView(generic.ListView):
+class MatchView(generic.ListView):
     template_name = 'prode/index.html'
     context_object_name = 'match_list'
 
@@ -37,7 +37,7 @@ class BetView(generic.ListView):
         form = BetForm()
         return render(request, self.template_name, {'form': form})
 
-    def post(self, request): 
+    def post(self, request):  
         form = BetForm(request.POST)
         if form.is_valid():
             form.save() 
