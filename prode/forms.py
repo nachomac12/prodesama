@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Bet
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -27,3 +28,10 @@ class RegistrationForm(UserCreationForm):
 
         return user
 
+class BetForm(forms.ModelForm):
+    team1_score = forms.IntegerField(min_value=0, max_value=15)
+    team2_score = forms.IntegerField(min_value=0, max_value=15)
+
+    class Meta:
+        model = Bet
+        fields = ('team1_score', 'team2_score')

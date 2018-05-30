@@ -1,30 +1,18 @@
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-    <section class="section is-medium">
-    <div>
-        <form method="post">
+<section class="section is-medium">
+    <div>  
+        <form method="POST">    
+        {% for field in form %}
         {% csrf_token %}
-        <table class="table is-striped">
-            {% for bet in bet_list %}
-                <tr>
-                    <th>La apuesta finaliza:</th>
-                    <th>{{ bet.match.end|date:'d-m-Y' }}</th>
-                </tr>
-                <tr>
-                    <td><img src="{% static 'prode/images/' %}{{ bet.match.team1.flag }}" alt="Bandera"></td>
-                    <td>{{ bet.match.team1.name }}</td>
-                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team1_score" name"team1_score" value="{{ bet.team1_score }}">
-                    </td>
-                    <td><input class="input is-primary is-rounded" type="number" placeholder="Goal" id="team2_score" name"team2_score" value="{{ bet.team2_score }}">
-                    </td>
-                    <td>{{ bet.match.team2.name }}</td>
-                    <td><img src="{% static 'prode/images/' %}{{ bet.match.team2.flag }}" alt="Bandera"></td>   
-                </tr>
-            {% endfor %}
-        </table>
-        <button class="button is-warning" type="submit" value="Bet">Apostar</button>
-        </form>   
+        <td>{{ field }}</td>
+        {% endfor %}
+       <td><button class="button is-warning" type="submit">Apostar</button></td>
+        </form>
     </div>
-    </section>
+    {% for field in bet %}
+    <p>{{ bet.match.team1.name }}</p>
+    {% endfor %}
+</section>
 {% endblock %}

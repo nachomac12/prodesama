@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth import login, authenticate
 from prode.forms import RegistrationForm
 from .models import Team, Match, Bet
+from .forms import BetForm
 
 class IndexView(generic.ListView):
     template_name = 'prode/index.html'
@@ -29,11 +30,20 @@ def signup(request):
         form = RegistrationForm()
         return render(request, 'prode/signup.html', {'form': form})
 
-class BetView(generic.ListView):
-    template_name = 'prode/home.html' 
-    context_object_name = 'bet_list'
-    
-    def get_queryset(self):
-        return Bet.objects.all()
+class BetView(generic.ListView):  
+    template_name = 'prode/home.html'
+  
+    def get(self, request):
+        form = BetForm()
+        return render(request, self.template_name, {'form': form})
 
-    #Armar función POST que guarde en la DB los input de goles
+    def post(self, request):  
+        form = BetForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            team1_score = form.cleaned_data.get('team1_score')
+            team2_score = form.cleaned_data.get('team2_score')
+            form = BetForm()
+        args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score}
+        return render(request, self.template_name, args)
+
