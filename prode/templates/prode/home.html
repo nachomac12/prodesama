@@ -5,19 +5,20 @@
 <section class="section is-medium">
     <div>
     <table class="table is-striped is-fullwidth">       
-        <form method="POST">
-        {% csrf_token %}            
         {% for bet in bets %}
-        <tr>
-        <td>{{ bet.match.team1.name }}</td>  
-        <td>{{ form.team1_score }}</td>
-        <td>{{ form.team2_score }}</td>
-        <td>{{ bet.match.team2.name}} </td>
-       <td><button class="button is-warning" type="submit">Apostar</button></td> 
-        </tr>
+        <form method="POST">            
+        {% csrf_token %}
+            <tr>
+            <input type="hidden" name="match" id="match" value="{{ bet.match }}">
+            <td>{{ bet.match.team1.name }}</td>  
+            <td>{{ form.team1_score }}</td>
+            <td>{{ form.team2_score }}</td>
+            <td>{{ bet.match.team2.name}} </td>
+            <td><button class="button is-warning" type="submit">Apostar</button></td> 
+            </tr>
         </form>
+        {% endfor %}
     </div> 
-    {% endfor %}
     </table>
 </section>
 {% endblock %}
