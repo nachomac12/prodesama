@@ -1,102 +1,38 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'prode/css/style.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" async></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" async></script>
+    <script src="{% static 'prode/js/modal.js' %}" async></script>
     <title>PRODESAMA</title>
 </head>
-
 <body>
-    <nav class="navbar is-transparent is-fixed-top">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="{% static 'prode/images/prodelogo.png' %}" alt="PRODESAMA" width="112" height="28">
-            </a>
-        </div>
-        <div class="navbar-menu">
-            <div class="navbar-end">
-                <a class="navbar-item is-size-4" href="login">Iniciar sesión</a>
-                <a class="navbar-item is-size-4" href="signup">Registrarse</a>    
-                <!--
-                <a class="navbar-item is-size-4" onclick="chooseModal('login')">Iniciar sesión</a>
-                <a class="navbar-item is-size-4" onclick="chooseModal('register')">Registrarse</a>    
-                <div class="modal" id="modal">
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title" id='sign-in'>Iniciar sesión</p>
-                            <p class="modal-card-title" id='sign-up'>Registrarse</p>
-                            <button class="delete" onclick="closeModal()"></button>
-                        </header>
-                        <section class="modal-card-body" id="register-body">      
-                            <form method="post">
-                                <div class="field">
-                                    <label class="label">Nombre</label>
-                                    <div class="control">
-                                        <input class="input" type="text">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Apellido</label>
-                                    <div class="control">
-                                        <input class="input" type="text">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Nombre de usuario</label>
-                                    <div class="control">
-                                        <input class="input" type="text">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Contraseña</label>
-                                    <div class="control">
-                                        <input class="input" type="password">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Repetir contraseña</label>
-                                    <div class="control">
-                                        <input class="input" type="password">
-                                    </div>
-                                </div>
-                            </form>
-                        </section>
-                        <section class="modal-card-body" id="login-body"> 
-                            <form method="post">
-                                <div class="field">
-                                    <label class="label">Usuario</label>
-                                    <div class="control">
-                                        <input class="input" type="password">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Contraseña</label>
-                                    <div class="control">
-                                        <input class="input" type="password">
-                                    </div>
-                                </div>
-                            </form>
-                        </section>   
-                        <footer class="modal-card-foot">
-                            <a class="button is-success is-outlined" type"submit" id="register-button">Registrarse</a>
-                            <a class="button is-link is-outlined" type="submit" id="login-button">Ingresar</a>
-                            <a class="button" onclick="closeModal()">Cancelar</a>
-                        </footer>
-                    </div>
-                </div>-->
-            </div>
+    <nav class="navbar fixed-top navbar-expand-xl navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'prode/images/prodelogo.png' %}" alt="PRODESAMA" width="112" height="28">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="login">Iniciar sesión<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="signup">Registrarse<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-
     {% block body_block %}
-    <!-- Anything outside of this will be inherited if you extend !-->
+
     {% endblock %}
 </body>
-<script src="{% static 'prode/js/modal.js' %}"></script>
 </html>

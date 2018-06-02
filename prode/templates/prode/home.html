@@ -1,24 +1,24 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-<section class="section is-medium">
-    <div>
-    <table class="table is-striped is-fullwidth">       
-        {% for match in matchs %}
-        <form method="POST">            
-        {% csrf_token %}
-            <tr>
-            <input type="hidden" name="match" id="match" value="{{ match.id }}">
-            <td>{{ match.team1.name }}</td>  
-            <td>{{ form.team1_score }}</td>
-            <td>{{ form.team2_score }}</td>
-            <td>{{ match.team2.name}} </td>
-            <td><button class="button is-warning" type="submit">Apostar</button></td> 
-            </tr>
-        </form>
-        {% endfor %}
-    </div> 
-    </table>
-</section>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <table>       
+            {% for match in matchs %}
+            <form method="POST">            
+            {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
+                    <td>{{ match.team1.name }}</td>  
+                    <td>{{ form.team1_score }}</td>
+                    <td>{{ form.team2_score }}</td>
+                    <td>{{ match.team2.name}} </td>
+                    <td><button class="btn btn-primary" type="submit">Apostar</button></td> 
+                </tr>
+            </form>
+            {% endfor %}
+        </table>
+    </div>    
+</div>
 {% endblock %}

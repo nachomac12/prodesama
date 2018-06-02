@@ -1,23 +1,19 @@
 {% extends "prode/base.html" %}
 {% load static %}
+
 {% block body_block %}
-
-<section id="sectionIntro" class="hero is-fullheight" style="background-size: 100%; background: url({% static 'prode/images/pelota.jpg' %})no-repeat center;">
-    <div class="hero-body">
-        <div class="container" >
-        <h1 class="title is-1 has-text-light">¡Ganá puntos con cada apuesta!</h1>
-        <h3 class="title is-3 has-text-light">Si acertás el partido son 3 puntos.</h2>
-        <h3 class="title is-3 has-text-light">Si acertás el resultado exacto duplicás.</h2>
-        </div>
+<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/pelota.jpg' %})no-repeat center; min-height: 100vh;">
+    <div class="container">
+        <h1 class="display-4">¡Ganá puntos con cada apuesta!</h1>
+        <h3 class="display-6">Si acertás el partido son 3 puntos.</h2>
+        <h3 class="display-6">Si acertás el resultado exacto duplicás.</h2>
     </div>
-</section>
-
+</div>
 <br>
-
-<section class="hero is-light is-large">
-    <div class="container has-text-centered">
-        <h1 class="title is-1">Próximos partidos</h1>
-        <table class="table is-striped is-fullwidth">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Próximos partidos</h1>
+        <table>
             {% for match in match_list %}
                 <tr>
                     <th>{{ match.start|date:'d-m-Y' }}</th>
@@ -31,5 +27,5 @@
             {% endfor %}
         </table>
     </div>
-</section>
+</div>
 {% endblock %}
