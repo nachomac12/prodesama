@@ -34,4 +34,4 @@ class BetForm(forms.ModelForm):
     
     class Meta:
         model = Bet
-        fields = ('team1_score', 'team2_score', 'match',)
+        fields = ('team1_score', 'team2_score', 'match')

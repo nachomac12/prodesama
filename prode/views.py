@@ -36,9 +36,9 @@ class BetView(generic.ListView):
     #Obtengo todos los elementos de BetForm y todas las apuestas de la DB
     
     def get(self, request):
-        bets = Bet.objects.all()
+        matchs = Match.objects.all()
         form = BetForm()
-        return render(request, self.template_name, {'form': form, 'bets': bets})
+        return render(request, self.template_name, {'form': form, 'matchs': matchs})
 
     #Guardo los goles de los input en la DB
     
