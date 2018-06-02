@@ -31,7 +31,7 @@ class RegistrationForm(UserCreationForm):
 class BetForm(forms.ModelForm):
     team1_score = forms.IntegerField(min_value=0, max_value=15)
     team2_score = forms.IntegerField(min_value=0, max_value=15)
-
+    
     class Meta:
         model = Bet
-        fields = ('team1_score', 'team2_score')
+        fields = ('team1_score', 'team2_score', 'match',)
