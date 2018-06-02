@@ -50,7 +50,7 @@ class BetView(generic.ListView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
-            return redirect ('index')
+            return redirect ('home')
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 

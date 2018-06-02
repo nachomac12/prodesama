@@ -9,7 +9,7 @@
         <form method="POST">            
         {% csrf_token %}
             <tr>
-            <input type="hidden" name="match" id="match" value="{{ match }}">
+            <input type="hidden" name="match" id="match" value="{{ match.id }}">
             <td>{{ match.team1.name }}</td>  
             <td>{{ form.team1_score }}</td>
             <td>{{ form.team2_score }}</td>
