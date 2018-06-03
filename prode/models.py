@@ -19,15 +19,13 @@ class Match(models.Model):
         return (self.team1.name + " vs " + self.team2.name)
         
 class Bet(models.Model):
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='+')
+    user = models.ForeignKey(User, related_name='bets', blank=True, null=True, on_delete=models.CASCADE)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='bets') 
     team1_score = models.PositiveIntegerField(default=0)
     team2_score = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ('user', 'match')
+
     def __str__(self):
         return (str(self.match))
-
-class UserData(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    score = models.PositiveIntegerField(default=0)
-    bets = models.ForeignKey(Bet, on_delete=models.CASCADE, related_name='+')
-    def __str__(self):
-        return self.user.username

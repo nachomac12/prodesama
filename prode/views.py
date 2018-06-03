@@ -42,10 +42,17 @@ class BetView(generic.ListView):
 
     #Guardo los goles de los input en la DB
     
-    def post(self, request):  
-        form = BetForm(request.POST)
+    def post(self, request, bet_id=None):
+        if bet_id:
+            bet = Bet.objects.get(pk=bet_id)
+            form = BetForm(request.POST, instance=bet)
+        else:
+            form = BetForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            bet = form.save(commit=False)
+            bet.user = request.user
+            bet.save()
             team1_score = form.cleaned_data.get('team1_score')
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
