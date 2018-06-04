@@ -24,16 +24,15 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect(reverse('prode:index'))
-            #return redirect('home')    
+            return HttpResponseRedirect(reverse('prode:home'))
     else:
         form = RegistrationForm()
-        return render(request, 'prode/signup.html', {'form': form})
+    return render(request, 'prode/signup.html', {'form': form})
 
 class BetView(generic.ListView):  
     template_name = 'prode/home.html'
     
-    #Obtengo todos los elementos de BetForm y todas las apuestas de la DB
+    #Obtengo todos los elementos de BetForm y todos los partidos de la DB
     
     def get(self, request):
         matchs = Match.objects.all()
