@@ -30,7 +30,6 @@ def signup(request):
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
 
-@login_required
 class HomeView(generic.ListView):
     template_name = 'prode/home.html'
     def get(self, request):
