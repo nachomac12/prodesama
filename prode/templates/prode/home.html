@@ -1,8 +1,7 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-<div class="jumbotron jumbotron-fluid">
+<!--<div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table>       
             {% for match in matchs %}
@@ -20,5 +19,34 @@
             {% endfor %}
         </table>
     </div>    
+</div>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <ul class="nav flex-column nav-tabs nav-fill">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Apuestas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Puntaje</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Mis datos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Mis grupos</a>
+                </li>
+              </ul>
+        </div>
+        <div class="col-11">
+            <div class="jumbotron">
+                <h1 class="display-4">Acá va el contenido</h1>
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo totam porro harum, libero, in praesentium, tenetur maxime ipsa obcaecati aliquid magni velit ut? Esse blanditiis nam voluptatum doloremque saepe odit.</p>
+                <hr class="my-4">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, provident? Eius amet laborum atque suscipit aspernatur ad, distinctio expedita, velit et odit, culpa sequi veniam esse impedit nostrum molestiae autem!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum veritatis harum eligendi voluptatem quidem sint non quibusdam repellat accusantium temporibus, dolore deleniti, ut quaerat veniam nesciunt odit optio cum expedita.</p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

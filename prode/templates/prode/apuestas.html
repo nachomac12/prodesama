@@ -1,0 +1,14 @@
+<div class="container">
+    <table>       
+        {% for bet in bets %}
+            <tr>
+                <td>{{ bet.match.team1.name }}</td>  
+                <td>{{ bet.team1_score }}</td>
+                <td>{{ bet.team2_score }}</td>
+                <td>{{ bet.match.team2.name}} </td>
+                <td><button class="btn btn-warning" type="submit">Editar</button></td>
+                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>    

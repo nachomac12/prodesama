@@ -1,0 +1,29 @@
+<div class="container">
+    <table>
+        <tr>
+            <td><h1>General</h1></td>
+        </tr>
+        <tr>
+            <td>Puntaje:</td>
+            <td>user.score</td>
+        </tr>
+        <tr>
+            <td>Posición:</td>
+            <td>user.position</td>
+        </tr>
+        
+        {% for group in groups %}
+            <tr>
+                <td><h1>{{ group.name }}</h1></td>
+            </tr>
+            <tr>
+                <td>Puntaje:</td>
+                <td>{{ group.user.score }}</td>
+            </tr>
+            <tr>
+                <td>Posición:</td>
+                <td>{{ group.user.position }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
