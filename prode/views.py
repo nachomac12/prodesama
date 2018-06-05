@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 from prode.forms import RegistrationForm
 from .models import Team, Match, Bet
 from .forms import BetForm
@@ -29,6 +30,7 @@ def signup(request):
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
 
+@login_required
 class HomeView(generic.ListView):
     template_name = 'prode/home.html'
     def get(self, request):
