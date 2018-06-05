@@ -1,25 +1,6 @@
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-<!--<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <table>       
-            {% for match in matchs %}
-            <form method="POST">            
-            {% csrf_token %}
-                <tr>
-                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                    <td>{{ match.team1.name }}</td>  
-                    <td>{{ form.team1_score }}</td>
-                    <td>{{ form.team2_score }}</td>
-                    <td>{{ match.team2.name}} </td>
-                    <td><button class="btn btn-primary" type="submit">Apostar</button></td> 
-                </tr>
-            </form>
-            {% endfor %}
-        </table>
-    </div>    
-</div>-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-1">

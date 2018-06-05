@@ -29,18 +29,21 @@ def signup(request):
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
 
-class BetView(generic.ListView):  
+class HomeView(generic.ListView):
     template_name = 'prode/home.html'
-    
+    def get(self, request):
+        return render(request, self.template_name)
+
+class BetView(generic.DetailView):
+    template_name = 'prode/apuestas.html'
+
     #Obtengo todos los elementos de BetForm y todos los partidos de la DB
-    
     def get(self, request):
         matchs = Match.objects.all()
         form = BetForm()
         return render(request, self.template_name, {'form': form, 'matchs': matchs})
 
     #Guardo los goles de los input en la DB
-    
     def post(self, request, bet_id=None):
         if bet_id:
             bet = Bet.objects.get(pk=bet_id)
@@ -60,3 +63,17 @@ class BetView(generic.ListView):
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
+class ScoreView(generic.DetailView):
+    template_name = 'prode/puntaje.html'
+    def get(self, request):
+        return render(request, self.template_name)
+
+class MyDataView(generic.DetailView):
+    template_name = 'prode/datos.html'
+    def get(self, request):
+        return render(request, self.template_name)
+
+class GroupView(generic.DetailView):
+    template_name = 'prode/grupos.html'
+    def get(self, request):
+        return render(request, self.template_name)
