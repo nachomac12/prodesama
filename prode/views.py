@@ -59,7 +59,21 @@ class BetView(generic.DetailView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
-            return redirect ('home')
+            return redirect ('prode:home')
+        args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
+        return render(request, self.template_name, args)
+
+    def put(self, request):
+        form = BetForm(request.PUT)
+        if form.is_valid():
+            bet = form.save(commit=False)
+            bet.user = request.user
+            bet.save()
+            team1_score = form.cleaned_data.get('team1_score')
+            team2_score = form.cleaned_data.get('team2_score')
+            match = form.cleaned_data.get('match')
+            form = BetForm()
+            return redirect ('prode:home')
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
