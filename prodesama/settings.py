@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'prode.middleware.put_parsing.PutParsingMiddleware',
-    'prode.middleware.put_parsing.PutParsingMiddleware',
+    'prode.middleware.put_parsing.JSONParsingMiddleware',
 ]
 
 ROOT_URLCONF = 'prodesama.urls'

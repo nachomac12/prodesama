@@ -8,6 +8,13 @@
             <form method="POST">            
             {% csrf_token %}
                 <tr>
+                    {% for bet in bets %}
+                    {% if match.id == bet.match.id %}
+                    <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}">
+                    {% else %}
+                    <input type="hidden" name="bet_id" id="bet_id" value="Null">
+                    {% endif %}
+                    {% endfor %}
                     <input type="hidden" name="match" id="match" value="{{ match.id }}">
                     <td>{{ match.team1.name }}</td>  
                     <td>{{ form.team1_score }}</td>
@@ -19,5 +26,6 @@
             {% endfor %}
         </table>
     </div>    
+
 </div>   
 {% endblock %}
