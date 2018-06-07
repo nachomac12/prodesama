@@ -41,16 +41,18 @@ class BetView(generic.DetailView):
     def get(self, request):
         matchs = Match.objects.all()
         form = BetForm()
-        return render(request, self.template_name, {'form': form, 'matchs': matchs})
+        bets = Bet.objects.all()
+
+        return render(request, self.template_name, {'form': form, 'matchs': matchs, 'bets': bets})
 
     #Guardo los goles de los input en la DB
-    def post(self, request, bet_id=None):
+    def post(self, request):
+        bet_id = request.POST.get("bet_id")
         if bet_id:
             bet = Bet.objects.get(pk=bet_id)
             form = BetForm(request.POST, instance=bet)
         else:
             form = BetForm(request.POST)
-
         if form.is_valid():
             bet = form.save(commit=False)
             bet.user = request.user
@@ -59,7 +61,7 @@ class BetView(generic.DetailView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
-            return redirect ('home')
+            return redirect ('prode:home')
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
