@@ -10,9 +10,7 @@
                 <tr>
                     {% for bet in bets %}
                     {% if match.id == bet.match.id %}
-                    <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}">
-                    {% else %}
-                    <input type="hidden" name="bet_id" id="bet_id" value="Null">
+                    <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
                     {% endif %}
                     {% endfor %}
                     <input type="hidden" name="match" id="match" value="{{ match.id }}">

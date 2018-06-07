@@ -47,7 +47,7 @@ class BetView(generic.DetailView):
 
     #Guardo los goles de los input en la DB
     def post(self, request):
-        bet_id = request.POST["bet_id"]
+        bet_id = request.POST.get("bet_id")
         if bet_id:
             bet = Bet.objects.get(pk=bet_id)
             form = BetForm(request.POST, instance=bet)
