@@ -1,0 +1,34 @@
+/* Estilo para los botoes del home */
+.lista-opciones-home{
+    background-color: rgb(255, 255, 255); 
+    color: black; 
+    font-size: 20px;
+    transition-duration: 0.5s;    
+    border-radius: 20px;
+    text-align: center;
+}
+.lista-opciones-home:hover{
+    background-color: rgb(100, 236, 157);
+    color: white; 
+    transition-duration: 0.5s;
+}
+
+.lista-opciones-home::.lista-format:hover{
+    background-color: rgb(100, 236, 157);
+    color: white; 
+    transition-duration: 0.5s;   
+    border-radius: 20px;
+}
+/*Fin estilo para los botones del 'home' */
+
+/*Estilo para permitir scrollear la lista de 'Próximos partidos' en index */
+.lista-proximos-partidos{
+    height: 200px;
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+.lista-proximos-partidos::-webkit-scrollbar{
+    display: none;
+}
+/*Fin estilo para 'Próximos partidos' */
