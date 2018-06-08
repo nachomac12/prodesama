@@ -4,21 +4,28 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table>       
+            {% now "SHORT_DATE_FORMAT" as current_date %}
+            {% now "H" as current_time %}
+
             {% for match in matchs %}
             <form method="POST">            
             {% csrf_token %}
                 <tr>
-                    {% for bet in bets %}
-                    {% if match.id == bet.match.id %}
-                    <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
+                    {% if match.start|date:'SHORT_DATE_FORMAT' == current_date and match.start|time:"H"|add:"1" >= current_time %}
+
+                    {% else %}
+                        {% for bet in bets %}
+                        {% if match.id == bet.match.id %}
+                        <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
+                        {% endif %}
+                        {% endfor %}
+                        <input type="hidden" name="match" id="match" value="{{ match.id }}">
+                        <td>{{ match.team1.name }}</td>  
+                        <td>{{ form.team1_score }}</td>
+                        <td>{{ form.team2_score }}</td>
+                        <td>{{ match.team2.name}} </td>
+                        <td><button class="btn btn-primary" type="submit">Apostar</button></td>
                     {% endif %}
-                    {% endfor %}
-                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                    <td>{{ match.team1.name }}</td>  
-                    <td>{{ form.team1_score }}</td>
-                    <td>{{ form.team2_score }}</td>
-                    <td>{{ match.team2.name}} </td>
-                    <td><button class="btn btn-primary" type="submit">Apostar</button></td> 
                 </tr>
             </form>
             {% endfor %}
