@@ -42,7 +42,6 @@ class BetView(generic.DetailView):
         matchs = Match.objects.all()
         form = BetForm()
         bets = Bet.objects.all()
-
         return render(request, self.template_name, {'form': form, 'matchs': matchs, 'bets': bets})
 
     #Guardo los goles de los input en la DB
