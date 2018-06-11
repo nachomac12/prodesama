@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class Team(models.Model):
     name = models.CharField(max_length=50)
-    flag = models.ImageField()
+    flag = models.ImageField(upload_to='prode/images/flags/')
     def __str__(self):
         return self.name
 

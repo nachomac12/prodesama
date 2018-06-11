@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-
 # URL a la que redirige después de acceder exitosamente
 LOGIN_REDIRECT_URL = '/home'
+
+MEDIA_ROOT = 'prode/static/'
