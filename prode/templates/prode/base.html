@@ -22,17 +22,115 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/login">Iniciar sesión<span class="sr-only">(current)</span></a>
+                    <a type="button" id="btnLogin" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Iniciar sesión</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/signup">Registrarse<span class="sr-only">(current)</span></a>
+                    <a type="button" id="btnSignup" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Registrarse</a>
+                    <!-- <a class="nav-link" href="/signup">Registrarse<span class="sr-only">(current)</span></a> -->
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/logout">Cerrar sesión<span class="sr-only">(current)</span></a>
+                        <a type="button" id="btnLogout" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</a>
+                    <!-- <a class="nav-link" href="/logout">Cerrar sesión<span class="sr-only">(current)</span></a> -->
                 </li>
             </ul>
         </div>
     </nav>
+
+<!-- Modal del login -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Usuario:</label>
+                <div>
+                    <input type="text" name="username" maxlength="254" required id="id_username" autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="id_password">Contraseña:</label>
+                <div>
+                    <input type="password" name="password" id="id_password" required />
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Acceder</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin modal del login -->
+
+<!-- Modal del signup -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear nuevo perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_username">Nombre de usuario:</label>
+                        <div>
+                            <input type="text" name="username" maxlength="150" id="id_username" autofocus required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_first_name">Nombre:</label>
+                        <div>
+                            <input type="text" name="first_name" maxlength="30" id="id_first_name" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_last_name">Apellido:</label>
+                        <div>
+                            <input type="text" name="last_name" maxlength="150" id="id_last_name" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">Correo electrónico:</label>
+                        <div>
+                            <input type="email" name="email" id="id_email" required />
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label for="id_password1">Contraseña:</label>
+                        <div>
+                            <input type="password" name="password1" id="id_password1" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password2">Repetir contraseña:</label>
+                        <div>
+                            <input type="password" name="password2" id="id_password2" required />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Registrarme</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin modal del signup -->
 
     {% block body_block %}
 
