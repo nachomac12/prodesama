@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
@@ -120,8 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-LOGIN_REDIRECT_URL = 'home'
-
 # URL a la que redirige después de acceder exitosamente
 LOGIN_REDIRECT_URL = '/home'
+
+MEDIA_ROOT = 'prode/static/'
