@@ -32,13 +32,12 @@
 }
 /*Fin estilo para 'Próximos partidos' */
 
-/*Estilo para el header de los modals de 'login' y 'signup'
 .modal-header{
     background-color: rgb(202, 135, 91);
     color: white;
     font: bolder;
     font-size: 40px;
-} */
+}
 
 a:link {color: rgb(202, 135, 91); text-decoration: none;}
 a:visited {color: rgb(202, 135, 91); text-decoration: none;}
