@@ -4,20 +4,19 @@
     color: black; 
     font-size: 20px;
     transition-duration: 0.5s;    
-    border-radius: 20px;
+    border-radius: 5px;
     text-align: center;
 }
 .lista-opciones-home:hover{
-    background-color: rgb(100, 236, 157);
-    color: white; 
+    background-color: rgb(199, 187, 187);
+    color: white;
     transition-duration: 0.5s;
 }
 
 .lista-opciones-home::.lista-format:hover{
-    background-color: rgb(100, 236, 157);
+    background-color: rgb(199, 187, 187);
     color: white; 
-    transition-duration: 0.5s;   
-    border-radius: 20px;
+    transition-duration: 0.5s;
 }
 /*Fin estilo para los botones del 'home' */
 
@@ -35,8 +34,12 @@
 
 /*Estilo para el header de los modals de 'login' y 'signup'*/
 .modal-header{
-    background-color: aquamarine;
-    color: chocolate;
+    background-color: rgb(202, 135, 91);
+    color: white;
     font: bolder;
     font-size: 40px;
 }
+
+a:link {color: rgb(202, 135, 91); text-decoration: none;}
+a:visited {color: rgb(202, 135, 91); text-decoration: none;}
+
