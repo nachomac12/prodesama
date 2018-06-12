@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils import timezone
+from datetime import timedelta
 
 class Team(models.Model):
     name = models.CharField(max_length=50)
@@ -30,6 +31,11 @@ class Match(models.Model):
             elif (self.team1_score == self.team2_score):
                 winner = "tie"
         return winner
+
+    def is_unavailable(self):
+        now = timezone.now()
+        start = self.start - timedelta(hours=1)
+        return now >= start
 
     def __str__(self):
         return (self.team1.name + " vs " + self.team2.name)
