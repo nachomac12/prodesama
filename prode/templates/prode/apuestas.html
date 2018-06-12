@@ -11,9 +11,6 @@
             <form method="POST">            
             {% csrf_token %}
                 <tr>
-                    {% if match.start|date:'SHORT_DATE_FORMAT' == current_date and match.start|time:"H"|add:"1" >= current_time %}
-
-                    {% else %}
                         {% for bet in bets %}
                         {% if match.id == bet.match.id %}
                         <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
@@ -25,7 +22,6 @@
                         <td>{{ form.team2_score }}</td>
                         <td>{{ match.team2.name}} </td>
                         <td><button class="btn btn-primary" type="submit">Apostar</button></td>
-                    {% endif %}
                 </tr>
             </form>
             {% endfor %}

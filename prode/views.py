@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate
 from prode.forms import RegistrationForm
 from .models import Team, Match, Bet
 from .forms import BetForm
+from django.utils import timezone
 
 class MatchView(generic.ListView):
     template_name = 'prode/index.html'
@@ -13,7 +14,7 @@ class MatchView(generic.ListView):
 
     def get_queryset(self):
         """Return all existing match on database"""
-        return Match.objects.all()
+        return Match.objects.filter(end__gte=timezone.now()).order_by('start')
 
 def signup(request):
     if request.method == 'POST':
@@ -39,7 +40,11 @@ class BetView(generic.DetailView):
 
     #Obtengo todos los elementos de BetForm y todos los partidos de la DB
     def get(self, request):
-        matchs = Match.objects.all()
+        m = Match.objects.all()
+        matchs = []
+        for i in m:
+            if i.is_unavailable() == False:
+                matchs.append(i)
         form = BetForm()
         bets = Bet.objects.all()
         return render(request, self.template_name, {'form': form, 'matchs': matchs, 'bets': bets})
