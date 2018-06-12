@@ -32,13 +32,3 @@ function chooseModal(option) {
 function closeModal() {
   modal.classList.remove('is-active');
 }
-
-//Comando para abrir el modal de 'login'
-$('#btnLogin').click(function(){
-  $('#loginModal').modal('show');
-});
-
-//Comando para abrir el modal de 'signup'
-$('#btnSignup').click(function(){
-  $('#signupModal').modal('show');
-});
