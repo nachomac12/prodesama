@@ -8,12 +8,13 @@ from .models import Team, Match, Bet
 from .forms import BetForm
 from django.utils import timezone
 
+
 class MatchView(generic.ListView):
     template_name = 'prode/index.html'
     context_object_name = 'match_list'
 
     def get_queryset(self):
-        """Return all existing match on database"""
+        """Return all existing match on database."""
         return Match.objects.filter(end__gte=timezone.now()).order_by('start')
 
 def signup(request):
@@ -30,10 +31,12 @@ def signup(request):
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
 
+
 class HomeView(generic.ListView):
     template_name = 'prode/home.html'
     def get(self, request):
         return render(request, self.template_name)
+
 
 class BetView(generic.DetailView):
     template_name = 'prode/apuestas.html'
@@ -69,15 +72,18 @@ class BetView(generic.DetailView):
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
+
 class ScoreView(generic.DetailView):
     template_name = 'prode/puntaje.html'
     def get(self, request):
         return render(request, self.template_name)
 
+
 class MyDataView(generic.DetailView):
     template_name = 'prode/datos.html'
     def get(self, request):
         return render(request, self.template_name)
+
 
 class GroupView(generic.DetailView):
     template_name = 'prode/grupos.html'

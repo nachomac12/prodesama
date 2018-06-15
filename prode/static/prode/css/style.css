@@ -41,4 +41,5 @@
 
 a:link {color: rgb(202, 135, 91); text-decoration: none;}
 a:visited {color: rgb(202, 135, 91); text-decoration: none;}
+a:hover {text-decoration: none;}
 

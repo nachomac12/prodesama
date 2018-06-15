@@ -1,0 +1,32 @@
+{% extends "prode/base.html" %}
+{% block body_block %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <ul class="nav flex-column nav-tabs nav-fill">
+                <li class="lista-opciones-home">
+                    <a class="lista-format" href="{% url 'prode:home' %}">Home</a>
+                </li>    
+                <li class="lista-opciones-home">
+                  <a class="lista-format" href="apuestas">Apuestas</a>
+                </li>
+                <li class="lista-opciones-home">
+                  <a class="lista-format" href="puntaje">Puntaje</a>
+                </li>
+                <li class="lista-opciones-home">
+                  <a class="lista-format" href="datos">Mis datos</a>
+                </li>
+                <li class="lista-opciones-home">
+                  <a class="lista-format" href="grupos">Mis grupos</a>
+                </li>
+              </ul>
+        </div>
+        <div class="col-10">
+            <div class="jumbotron">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

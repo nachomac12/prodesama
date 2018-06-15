@@ -1,12 +1,9 @@
-{% extends "prode/base.html" %}
+{% extends "prode/navigation.html" %}
 {% load static %}
-{% block body_block %}
+{% block content %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table>       
-            {% now "SHORT_DATE_FORMAT" as current_date %}
-            {% now "H" as current_time %}
-
             {% for match in matchs %}
             <form method="POST">            
             {% csrf_token %}
