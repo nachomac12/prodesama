@@ -6,8 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'prode/css/style.css' %}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <title>PRODESAMA</title>
 </head>
 
@@ -27,121 +29,52 @@
                     </a>
                 </li>
                 {% else %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLogin">Iniciar sesión
-                        <span class="sr-only">(current)</span>
-                    </a>
-                    <!-- -->
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalSignup">Registrarse
-                        <span class="sr-only">(current)</span>
-                    </a>
-                    <!-- -->
-                </li>
-                {% endif %}
+                    <li class="nav-item active">
+                        <a id="aInit" class="nav-link" href="#" data-toggle="modal" data-target="#modal">Iniciar sesión<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a id="aReg" class="nav-link" href="#" data-toggle="modal" data-target="#modal">Registrarse<span class="sr-only">(current)</span></a>
+                    </li>
+                {% endif %}    
             </ul>
         </div>
     </nav>
 
-    <!-- Modales -->
-    <div class="modal fade" id="modalLogin">
+    <!-- Modal -->
+    <div class="modal fade" id="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Iniciar sesión</h5>
+                    <h5 class="modal-title">Título</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_username">Usuario:</label>
-                            <div>
-                                <input type="text" name="username" maxlength="254" required id="id_username" autofocus />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_password">Contraseña:</label>
-                            <div>
-                                <input type="password" name="password" id="id_password" required />
-                            </div>
-                        </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" href="/login">Entrar</button>
+                    <button id="submitForm" type="submit" class="btn btn-primary" href="/login">Aceptar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modalSignup">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Registrate</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_username">Nombre de usuario:</label>
-                            <div>
-                                <input type="text" name="username" maxlength="150" id="id_username" autofocus required/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_first_name">Nombre:</label>
-                            <div>
-                                <input type="text" name="first_name" maxlength="30" id="id_first_name" required/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_last_name">Apellido:</label>
-                            <div>
-                                <input type="text" name="last_name" maxlength="150" id="id_last_name" required/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_email">Correo electrónico:</label>
-                            <div>
-                                <input type="email" name="email" id="id_email" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_password1">Contraseña:</label>
-                            <div>
-                                <input type="password" name="password1" id="id_password1" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="id_password2">Repetir contraseña:</label>
-                            <div>
-                                <input type="password" name="password2" id="id_password2" required />
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" href="/signup">Registrarse</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content">
-        {% block body_block %}
-        {% endblock %}
-    </div>
+    {% block body_block %}
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-    crossorigin="anonymous"></script>
+    {% endblock %}
+
+    <script>
+        $('#aInit').click(function(){
+            $('.modal-title').html('Iniciá sesión');
+            $('.modal-body').load('login');
+        });
+        $('#aReg').click(function(){
+            $('.modal-title').html('Registrate');
+            $('.modal-body').load('signup');
+        });
+
+        $('#submitForm').click(function(){
+            $('#formulario').submit();
+        });
+    </script>
 </body>
 </html>
