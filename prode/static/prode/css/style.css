@@ -1,24 +1,37 @@
-/* Estilo para los botoes del home */
-.lista-opciones-home{
-    background-color: rgb(255, 255, 255); 
-    color: black; 
-    font-size: 20px;
-    transition-duration: 0.5s;    
-    border-radius: 5px;
-    text-align: center;
-}
-.lista-opciones-home:hover{
-    background-color: rgb(199, 187, 187);
-    color: white;
-    transition-duration: 0.5s;
+/* navigation.html styles */
+.col-2{
+    background:rgb(35, 35, 35);
+    width: 200px;
+    height: 500px;
 }
 
-.lista-opciones-home::.lista-format:hover{
-    background-color: rgb(199, 187, 187);
-    color: white; 
-    transition-duration: 0.5s;
+.col-2 ul li {
+    list-style: none;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgb(238, 232, 228);
+    text-align: center;
 }
-/*Fin estilo para los botones del 'home' */
+
+.col-2 a {  
+    background-color: rgb(35, 35, 35);
+    padding: 15px 40px;
+}
+
+.col-2 a:link {
+    color: rgb(238, 232, 228); 
+}
+
+.col-2 a:visited {
+    color: rgb(238, 232, 228);
+}
+
+.col-2 a:hover {
+    color: rgb(231, 123, 50);
+    text-decoration: none;
+}
+
+
+/* End navigation.html styles */
 
 /*Estilo para permitir scrollear la lista de 'Próximos partidos' en index */
 .lista-proximos-partidos{
@@ -33,13 +46,11 @@
 /*Fin estilo para 'Próximos partidos' */
 
 .modal-header{
-    background-color: rgb(202, 135, 91);
+    background-color: rgb(245, 160, 104);
     color: white;
     font: bolder;
     font-size: 40px;
 }
 
-a:link {color: rgb(202, 135, 91); text-decoration: none;}
-a:visited {color: rgb(202, 135, 91); text-decoration: none;}
-a:hover {text-decoration: none;}
+
 
