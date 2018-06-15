@@ -9,7 +9,7 @@ from .forms import BetForm
 from django.utils import timezone
 
 
-class MatchView(generic.ListView):
+class IndexView(generic.ListView):
     template_name = 'prode/index.html'
     context_object_name = 'match_list'
 

@@ -1,41 +1,4 @@
-/* navigation.html styles */
-.col-2{
-    background:rgb(35, 35, 35);
-    width: 200px;
-    height: 100%;
-}
-
-.col-2 ul li {
-    list-style: none;
-    padding: 15px 10px;
-    border-bottom: 1px solid rgb(238, 232, 228);
-    text-align: center;
-}
-
-.col-2 a {  
-    font-weight: bold;
-    background-color: rgb(35, 35, 35);
-    padding: 15px 40px;
-}
-
-.col-2 a:link {
-    color: rgb(238, 232, 228); 
-}
-
-.col-2 a:visited {
-    color: rgb(238, 232, 228);
-}
-
-.col-2 a:hover {
-    color: rgb(231, 123, 50);
-    text-decoration: none;
-}
-
-/* End navigation.html styles */
-
-/*------------------------------------------------------------------------------------*/
-
-/*Estilo para permitir scrollear la lista de 'Próximos partidos' en index */
+/*scroll lista de partidos */
 .lista-proximos-partidos{
     height: 200px;
     overflow-y: auto;
@@ -45,13 +8,13 @@
 .lista-proximos-partidos::-webkit-scrollbar{
     display: none;
 }
-/*Fin estilo para 'Próximos partidos' */
+/*end scroll lista de partidos' */
 
 /*------------------------------------------------------------------------------------*/
 
 /*Modal style*/
 .modal-header{
-    background-color: rgb(245, 160, 104);
+    background-color: rgb(44, 44, 44);
     color: white;
     font: bolder;
     font-size: 40px;

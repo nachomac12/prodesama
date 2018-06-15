@@ -3,22 +3,19 @@
 {% block body_block %}
 
 <div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/arenagremio.jpg' %})no-repeat center; min-height: 100vh;">
-
 </div>       
 
 <div class="lista-proximos-partidos">
     <table class="table text-black">
-        {% for match in match_list %}
-            <tr>
-                <th>{{ match.start|date:'d-m-Y' }}</th>
-            </tr>
-            <tr>
-                <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                <td><strong>{{ match.team1.name }}</strong></td>
-                <td><strong>{{ match.team2.name }}</strong></td>
-                <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
-            </tr>
-        {% endfor %} 
+    {% for match in match_list %}
+        <tr><th>{{ match.start|date:'d-m-Y' }}</th></tr>
+        <tr>
+            <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
+            <td><strong>{{ match.team1.name }}</strong></td>
+            <td><strong>{{ match.team2.name }}</strong></td>
+            <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
+        </tr>
+    {% endfor %} 
     </table> 
 </div>
 
