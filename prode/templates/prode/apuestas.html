@@ -1,31 +1,29 @@
 {% extends "prode/navigation.html" %}
 {% load static %}
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <table class="table">
-            {% for match in matchs %}
-            <form method="POST">            
-            {% csrf_token %}
-                <tr>
-                    {% for bet in bets %}
-                    {% if match.id == bet.match.id %}
-                    <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
-                    {% endif %}
-                    {% endfor %}
-                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                    <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                    <td><label>{{ match.team1.name }}</label></td>  
-                    <td>{{ form.team1_score }}</td>
-                    <td>{{ form.team2_score }}</td>
-                    <td><label>{{ match.team2.name}}</label></td>
-                    <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
-                    <td><button class="btn btn-primary" type="submit">Apostar</button></td>
-                </tr>
-            </form>
-            {% endfor %}
-        </table>
-    </div>    
-
-</div>   
+<div class="lista-proximos-partidos">
+    <table class="table">
+        {% for match in matchs %}
+        <form method="POST">
+        {% csrf_token %}
+            <tr>
+                {% for bet in bets %}
+                {% if match.id == bet.match.id %}
+                <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
+                {% endif %}
+                {% endfor %}
+                <input type="hidden" name="match" id="match" value="{{ match.id }}">
+                <td><img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
+                <td><strong>{{ match.team1.name }}</strong></td>  
+                <td>{{ form.team1_score }}</td>
+                <td>{{ form.team2_score }}</td>
+                <td><strong>{{ match.team2.name}}</strong></td>
+                <td><img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
+                <td><button class="btn btn-primary" type="submit">Apostar</button></td>
+            </tr>
+        </form>
+        {% endfor %}
+    </table>
+</div>
+  
 {% endblock %}

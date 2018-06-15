@@ -1,40 +1,27 @@
 {% extends "prode/base.html" %}
 {% load static %}
-
 {% block body_block %}
-<div class="jumbotron jumbotron-fluid text-white text-center" style="background-size: 100%; background: url({% static 'prode/images/arenagremio.jpg' %})no-repeat center; min-height: 100vh;">
-    <div class="container">
-        <h1 class="display-4">¡Ganá puntos con cada apuesta!</h1>
-        <h3 class="display-6">Si acertás el partido son 3 puntos.</h2>
-        <h3 class="display-6">Si acertás el resultado exacto duplicás.</h2>
-    </div>
-    <br>
-    <div style="position: absolute; left: 100px">
-        <h1>Próximos partidos</h1>
-            <div class="lista-proximos-partidos">
-            <table>
-                {% for match in match_list %}
-                    <tr>
-                        <th>{{ match.start|date:'d-m-Y' }}</th>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                        <td>{{ match.team1.name }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ match.team2.name }}</td>
-                        <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
+
+<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/arenagremio.jpg' %})no-repeat center; min-height: 100vh;">
+
+</div>       
+
+<div class="lista-proximos-partidos">
+    <table class="table text-black">
+        {% for match in match_list %}
+            <tr>
+                <th>{{ match.start|date:'d-m-Y' }}</th>
+            </tr>
+            <tr>
+                <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
+                <td><strong>{{ match.team1.name }}</strong></td>
+                <td><strong>{{ match.team2.name }}</strong></td>
+                <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
+            </tr>
+        {% endfor %} 
+    </table> 
 </div>
 
 {% endblock %}
+
+

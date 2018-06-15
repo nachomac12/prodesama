@@ -2,7 +2,7 @@
 .col-2{
     background:rgb(35, 35, 35);
     width: 200px;
-    height: 500px;
+    height: 100%;
 }
 
 .col-2 ul li {
@@ -13,6 +13,7 @@
 }
 
 .col-2 a {  
+    font-weight: bold;
     background-color: rgb(35, 35, 35);
     padding: 15px 40px;
 }
@@ -30,8 +31,9 @@
     text-decoration: none;
 }
 
-
 /* End navigation.html styles */
+
+/*------------------------------------------------------------------------------------*/
 
 /*Estilo para permitir scrollear la lista de 'Próximos partidos' en index */
 .lista-proximos-partidos{
@@ -45,12 +47,44 @@
 }
 /*Fin estilo para 'Próximos partidos' */
 
+/*------------------------------------------------------------------------------------*/
+
+/*Modal style*/
 .modal-header{
     background-color: rgb(245, 160, 104);
     color: white;
     font: bolder;
     font-size: 40px;
 }
+/*End modal-style*/
 
+/*------------------------------------------------------------------------------------*/
 
+/* apuestas.html styles */
+
+.box {
+    width: 200px;
+    height: 200px;    
+    padding: 50px;
+    box-sizing: border-box;
+    background: rgb(107, 11, 110);
+}
+
+.box2 {
+    width: 200px;
+    height: 200px;    
+    padding: 50px;
+    box-sizing: border-box;
+    background: rgb(18, 11, 110);
+}
+
+.box3 {
+    width: 200px;
+    height: 200px;    
+    padding: 50px;
+    box-sizing: border-box;
+    background: rgb(11, 90, 110);
+}
+
+/* fin apuestas.html styles */
 
