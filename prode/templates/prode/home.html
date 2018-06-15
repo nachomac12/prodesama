@@ -1,25 +1,59 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <!-- Primer box -->
-        <div class="col order-1">
-            <div class="box">
-                <h1 class="text-white text-center">1</h1>
+    <div class="card-deck text-white">
+        
+        <div class="card bg-primary">
+            <div class="card-body text-center">
+                <p class="card-text">
+                    Para apostar tenés que clickear en "Apuestas" 
+                    y una vez hecho esto ingresar los resultados
+                    en los casilleros de los partidos disponibles
+                    para cada competencia.
+                    Para realizar tu apuesta dar click en el 
+                    botón de 'Apostar'.
+                </p>
+            </div>    
+        </div>
+        
+        <div class="card bg-info">
+            <div class="card-body text-center">
+                <p class="card-text">
+                    Si querés saber que puntaje tenés en cada
+                    grupo de amigos o a escala global, tenés 
+                    que dar click en "Puntaje". Allí también
+                    dispones el historial de tus ultimas apuestas
+                    realizadas y en que ranking grupal y global 
+                    te encontrás.
+                </p>
             </div>
         </div>
-        <!-- Segundo box -->
-        <div class="col order-2">
-            <div class="box2">
-                <h1 class="text-white text-center">2</h1>
+
+        <div class="card bg-success">
+            <div class="card-body text-center">
+                <p class="card-text">
+                    Para ver y/o modificar tu nombre de usuario,
+                    tu nombre, tu apellido o tu mail debes dar
+                    click en "Mis datos".
+                    En esta sección podés administrar tus datos
+                    e incluso cambiar tu contraseña. 
+                </p>
             </div>
         </div>
-        <!-- Tercer box -->
-        <div class="col order-3">
-            <div class="box3">
-                <h1 class="text-white text-center">3</h1>
+                
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">
+                    Para crear y administrar tus grupos debes dar
+                    click "Mis grupos".
+                    En un grupo podés agregar a tus amigos y podrás
+                    competir contra ellos. Deben elegir una competencia
+                    y las apuestas a realizar aparecerán en la sección 
+                    "Apuestas".
+                </p>
             </div>
-        </div>
+        </div> 
+
     </div>
-  </div>
+</div>
 {% endblock %}
