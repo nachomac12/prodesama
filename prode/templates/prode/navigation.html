@@ -2,31 +2,24 @@
 {% block body_block %}
 <div class="container-fluid">
     <div class="row">
+        
         <div class="col-2">
-            <ul class="nav flex-column nav-fill">
-                <li>
-                    <a href="{% url 'prode:home' %}">Home</a>
-                </li>    
-                <li>
-                    <a href="apuestas">Apuestas</a>
-                </li>
-                <li>
-                    <a href="puntaje">Puntaje</a>
-                </li>
-                <li>
-                    <a href="datos">Mis datos</a>
-                </li>
-                <li>
-                    <a href="grupos">Mis grupos</a>
-                </li>
-              </ul>
+            <div class="list-group">
+                <a href="{% url 'prode:home' %}" class="list-group-item list-group-item-action active">Home</a>
+                <a href="apuestas" class="list-group-item list-group-item-action">Apuestas</a>
+                <a href="puntaje" class="list-group-item list-group-item-action">Puntaje</a>
+                <a href="datos" class="list-group-item list-group-item-action">Mis Datos</a>
+                <a href="grupos" class="list-group-item list-group-item-action disabled">Mis grupos</a>
+            </div>
         </div>
+        
         <div class="col-10">
-                <div class="jumbotron">
+            <div class="jumbotron">
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
+    
     </div>
 </div>
 {% endblock %}

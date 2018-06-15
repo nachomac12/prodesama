@@ -6,7 +6,7 @@ from .models import Bet
 
 app_name = 'prode'
 urlpatterns = [
-    path('', views.MatchView.as_view(), name='index'),
+    path('', views.IndexView.as_view(), name='index'),
     path('login/', auth_views.login, {'template_name': 'prode/login.html'}, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     path('signup/', views.signup, name='signup'),
