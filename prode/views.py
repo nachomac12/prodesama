@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from prode.forms import RegistrationForm
 from .models import Team, Match, Bet
 from .forms import BetForm
@@ -84,6 +85,16 @@ class MyDataView(generic.DetailView):
     def get(self, request):
         return render(request, self.template_name)
 
+    def post(self, request):
+        user_id = request.POST.get("user_id")
+        if user_id:
+            user = User.objects.get(pk=user_id)
+            user.first_name = request.POST["first_name"]
+            user.last_name = request.POST["last_name"]
+            user.username = request.POST["username"]
+            user.save()
+            return redirect('prode:home')
+        return render(request, self.template_name)
 
 class GroupView(generic.DetailView):
     template_name = 'prode/grupos.html'
