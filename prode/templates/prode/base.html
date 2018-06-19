@@ -11,12 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="{% static 'prode/js/script.js' %}"></script>
     <title>PRODESAMA</title>
 </head>
 
 <body style="overflow-x: hidden">
     <nav class="navbar navbar-expand-xl navbar-light bg-light">
-        <img class="navbar-brand" src="{% static 'prode/images/prodelogo.png' %}" alt="PRODESAMA" width="180" height="auto">
+        <a href="{% url 'prode:index' %}"><img class="navbar-brand" src="{% static 'prode/images/prodelogo.png' %}" alt="PRODESAMA" width="180" height="auto"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,9 +26,12 @@
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'prode:home' %}">{{ user.username }}</a>
+                    <a class="nav-link" href="{% url 'prode:home' %}" style="color:green; text-transform: uppercase">
+                        {{ user.username }}
+                    </a>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/logout">Cerrar sesión
+                    <a class="nav-link" href="/logout">
+                        Cerrar sesión
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -65,19 +69,5 @@
 
     {% endblock %}
 
-    <script>
-        $('#aInit').click(function(){
-            $('.modal-title').html('Iniciar sesión');
-            $('.modal-body').load('login');
-        });
-        $('#aReg').click(function(){
-            $('.modal-title').html('Registrate');
-            $('.modal-body').load('signup');
-        });
-
-        $('#submitForm').click(function(){
-            $('#formulario').submit();
-        });
-    </script>
 </body>
 </html>
