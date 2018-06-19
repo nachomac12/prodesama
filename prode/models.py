@@ -68,4 +68,16 @@ class Bet(models.Model):
    
 class Competition(models.Model):
     name = models.CharField(max_length=100)
-    matches = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='competitions') 
+    matches = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='competitions')
+
+    def __str__(self):
+        return (str(self.name))
+
+class CompetitionStats(models.Model):
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
+    score = models.PositiveIntegerField(default=0)
+    ranking = models.PositiveIntegerField()
+    bets = models.ForeignKey(Bet, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return (str(self.competition))
