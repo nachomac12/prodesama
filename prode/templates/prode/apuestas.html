@@ -2,9 +2,13 @@
 {% load static %}
 {% block content %}
 
+{% for c in competitions %}
+<h2 class="text-secondary" style="font-family: 'Times New Roman', Times, serif">{{c.name}}</h2>
+
 <div class="lista-proximos-partidos">
     <table class="table">
         {% for match in matchs %}
+        {% if c.name == match.competition.name %}
         <form method="POST">
         {% csrf_token %}
             <tr>
@@ -23,8 +27,12 @@
                 <td><button class="btn btn-primary" type="submit">Apostar</button></td>
             </tr>
         </form>
+        {% endif %}
         {% endfor %}
     </table>
 </div>
-  
+
+{% endfor %}
+
 {% endblock %}
+

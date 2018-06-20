@@ -5,7 +5,7 @@ from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from prode.forms import RegistrationForm
-from .models import Team, Match, Bet
+from .models import Team, Match, Bet, Competition
 from .forms import BetForm
 from django.utils import timezone
 
@@ -49,9 +49,11 @@ class BetView(generic.DetailView):
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
+        competitions = Competition.objects.all()
         form = BetForm()
         bets = Bet.objects.all()
-        return render(request, self.template_name, {'form': form, 'matchs': matchs, 'bets': bets})
+        args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
+        return render(request, self.template_name, args)
 
     #Guardo los goles de los input en la DB
     def post(self, request):

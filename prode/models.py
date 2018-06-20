@@ -10,6 +10,12 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+class Competition(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return (str(self.name))
+
 class Match(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
@@ -17,6 +23,7 @@ class Match(models.Model):
     team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='+')
     team1_score = models.PositiveIntegerField(default=0)
     team2_score = models.PositiveIntegerField(default=0)
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True)
     def end_match(self):
         now = timezone.now() 
         return self.end <= now
@@ -49,13 +56,13 @@ class Bet(models.Model):
 
     def get_result(self):
         if (self.match.get_endscore() == self.match.team1) and (self.team1_score > self.team2_score):
-            self.result = 3
+            self.result = 1
         elif (self.match.get_endscore() == self.match.team2) and (self.team2_score > self.team1_score):
-            self.result = 3
+            self.result = 1
         elif (self.match.get_endscore() == "tie") and (self.team1_score == self.team2_score):
-            self.result = 3
+            self.result = 1
         elif (self.match.team1_score == self.team1_score) and (self.match.team2_score == self.team2_score):
-            self.result = 6
+            self.result = 3
         else: 
             self.result = 0
         return self.result
@@ -66,18 +73,4 @@ class Bet(models.Model):
     def __str__(self):
         return (str(self.match))
    
-class Competition(models.Model):
-    name = models.CharField(max_length=100)
-    matches = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='competitions')
 
-    def __str__(self):
-        return (str(self.name))
-
-class CompetitionStats(models.Model):
-    competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
-    score = models.PositiveIntegerField(default=0)
-    ranking = models.PositiveIntegerField()
-    bets = models.ForeignKey(Bet, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return (str(self.competition))
