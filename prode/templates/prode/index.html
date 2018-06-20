@@ -2,12 +2,14 @@
 {% load static %}
 {% block body_block %}
 
-<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018.jpg' %}); background-size: contain;">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018.jpg' %});">
 
     <div class="row">
     
         <div class="col-md-6 offset-md-3">
-        
+        <div class="lista-proximos-partidos">
             <table class="table table-dark table-striped">
             {% for match in match_list %}
                 <tr><th>{{ match.start|date:'d-m-Y' }}</th></tr>
@@ -19,7 +21,7 @@
                 </tr>
             {% endfor %} 
             </table> 
-        
+        </div>
         </div>
     
     </div>

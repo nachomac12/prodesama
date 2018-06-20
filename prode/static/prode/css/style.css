@@ -1,6 +1,6 @@
 /*scroll lista de partidos */
 .lista-proximos-partidos{
-    height: 200px;
+    height: 10%;
     overflow-y: auto;
     overflow-x:hidden;
 }
