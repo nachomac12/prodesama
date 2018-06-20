@@ -10,7 +10,10 @@
         
             <table class="table table-dark table-striped">
             {% for match in match_list %}
-                <tr><th>{{ match.start|date:'d-m-Y' }}</th></tr>
+                <tr>
+                    <th>{{ match.start|date:'d-m-Y' }}</th>
+                    <th class="text-center">{{ match.start|time:'H:i' }}</th>
+                </tr>
                 <tr>
                     <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
                     <td class="text-center"><strong>{{ match.team1.name }}</strong></td>
