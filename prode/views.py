@@ -8,6 +8,7 @@ from prode.forms import RegistrationForm
 from .models import Team, Match, Bet, Competition
 from .forms import BetForm
 from django.utils import timezone
+import datetime
 
 
 class IndexView(generic.ListView):

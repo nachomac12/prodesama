@@ -2,7 +2,7 @@
 {% load static %}
 {% block body_block %}
 
-<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018.jpg' %}); background-size: contain;>
+<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018.jpg' %}); background-size: contain;">
 
     <div class="row">
     
@@ -13,8 +13,8 @@
                 <tr><th>{{ match.start|date:'d-m-Y' }}</th></tr>
                 <tr>
                     <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                    <td><strong>{{ match.team1.name }}</strong></td>
-                    <td><strong>{{ match.team2.name }}</strong></td>
+                    <td class="text-center"><strong>{{ match.team1.name }}</strong></td>
+                    <td class="text-center"><strong>{{ match.team2.name }}</strong></td>
                     <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
                 </tr>
             {% endfor %} 
