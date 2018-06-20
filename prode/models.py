@@ -12,6 +12,7 @@ class Team(models.Model):
 
 class Competition(models.Model):
     name = models.CharField(max_length=100)
+    available = models.BooleanField(default=False)
 
     def __str__(self):
         return (str(self.name))
