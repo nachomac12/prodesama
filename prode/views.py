@@ -17,7 +17,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return all existing match on database."""
-        return Match.objects.filter(end__gte=timezone.now()).order_by('start')[:10]
+        return Match.objects.filter(competition=1).filter(end__gte=timezone.now()).order_by('start')
 
 def signup(request):
     if request.method == 'POST':
@@ -50,7 +50,7 @@ class BetView(generic.DetailView):
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
-        competitions = Competition.objects.all()
+        competitions = Competition.objects.filter(available=True)
         form = BetForm()
         bets = Bet.objects.all()
         args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
