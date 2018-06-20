@@ -11,4 +11,8 @@ $( document ).ready(function() {
     $('#submitForm').click(function(){
         $('#formulario').submit();
     });
+
+    $('#list_apuestas').click(function(){
+        $(this).css("background-color","white");
+    });
 });

@@ -51,3 +51,26 @@
 
 /* fin apuestas.html styles */
 
+
+/* navigation.html styles */
+
+#list_apuestas:hover { 
+    background-color: #007bff;
+    color: white;
+}
+
+#list_puntaje:hover { 
+    background-color: #17a2b8;
+    color: white;
+}
+
+#list_grupos:hover { 
+    background-color: #28a745;
+    color: white;
+}
+
+#list_datos:hover { 
+    background-color: #dc3545;
+    color: white;
+}
+/* fin apuestas.html styles */
