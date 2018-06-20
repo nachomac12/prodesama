@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 from datetime import timedelta
 
+
 class Team(models.Model):
     name = models.CharField(max_length=50)
     flag = models.ImageField(upload_to='prode/images/flags/')
@@ -74,3 +75,19 @@ class Bet(models.Model):
         return (str(self.match))
 
 
+class CompetitionStat(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    score = models.PositiveIntegerField(default=0)
+    ranking = models.PositiveIntegerField(null=True)
+    comp = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True)
+
+    def get_score(self):
+        lista = [self.user.bets.all()] 
+        for elem in lista:
+            for i in elem:
+                if (self.comp == i.match.competition):
+                    self.score += i.result
+        return self.score
+
+    class Meta:
+        unique_together = ('user', 'comp')
