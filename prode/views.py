@@ -17,7 +17,8 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return all existing match on database."""
-        return Match.objects.filter(competition=1).filter(end__gte=timezone.now()).order_by('start')
+        #return Match.objects.filter(competition=1).filter(end__gte=timezone.now()).order_by('start')
+        return Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')
 
 def signup(request):
     if request.method == 'POST':
