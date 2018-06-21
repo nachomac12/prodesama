@@ -9,7 +9,20 @@ $( document ).ready(function() {
     });
     
     $('#submitForm').click(function(){
-        $('#formulario').submit();
+        var form_inputs=$("#formulario").serializeArray();
+        var blank=false;
+
+        for (var input in form_inputs){
+            if ((form_inputs[input]['value'] == "")) {
+                blank=true;
+            };
+        };
+
+        if (!blank){
+            $('#formulario').submit();
+        } else {
+            alert('Por favor complete todos los campos del formulario')
+        };
     });
 
     $('#list_apuestas').click(function(){
