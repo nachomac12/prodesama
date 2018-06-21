@@ -90,5 +90,8 @@ class CompetitionStat(models.Model):
                     self.score += i.result
         return self.score
 
+    def __str__(self):
+        return(str(self.user) + " - " + str(self.comp))
+
     class Meta:
         unique_together = ('user', 'comp')

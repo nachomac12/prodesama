@@ -5,7 +5,7 @@ from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from prode.forms import RegistrationForm
-from .models import Team, Match, Bet, Competition
+from .models import Team, Match, Bet, Competition, CompetitionStat
 from .forms import BetForm
 from django.utils import timezone
 import datetime
@@ -45,7 +45,7 @@ class BetView(generic.DetailView):
 
     #Obtengo todos los elementos de BetForm y todos los partidos de la DB
     def get(self, request):
-        m = Match.objects.all()
+        m = Match.objects.all().order_by('start')
         matchs = []
         for i in m:
             if i.is_unavailable() == False:
@@ -80,7 +80,8 @@ class BetView(generic.DetailView):
 class ScoreView(generic.DetailView):
     template_name = 'prode/puntaje.html'
     def get(self, request):
-        return render(request, self.template_name)
+        comp_stats = CompetitionStat.objects.all()
+        return render(request, self.template_name, {'comp_stats':comp_stats})
 
 
 class MyDataView(generic.DetailView):

@@ -13,12 +13,14 @@
 /*------------------------------------------------------------------------------------*/
 
 /*Modal style*/
+
 .modal-header{
     background-color: rgb(44, 44, 44);
     color: white;
     font: bolder;
     font-size: 40px;
 }
+
 /*End modal-style*/
 
 /*------------------------------------------------------------------------------------*/
@@ -46,6 +48,8 @@
 }
 /* fin apuestas.html styles */
 
+/*------------------------------------------------------------------------------------*/
+
 /* Footer */
 
 .footer {
@@ -56,7 +60,20 @@
     background-color: rgb(255, 255, 246);
     color: black;
     text-align: center;
-    height: 10%;
+    height: 8%;
 }
 
 /* Footer */
+
+/*------------------------------------------------------------------------------------*/
+
+/* puntaje.html styles */
+
+.box {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid rgb(161, 147, 147);
+    margin: 0 auto;
+}
+
+/* fin puntaje.html styles */

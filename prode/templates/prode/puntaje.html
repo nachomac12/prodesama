@@ -1,6 +1,24 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
-<h1 class="text-center">En construcción</h1>
+
+{% for cs in comp_stats %}
+
+    {% if user == cs.user %}
+        <div class="box text-center"> 
+            <h2>{{ cs.comp }}</h2>
+            <br>
+            <p>{{ cs.user }}</p>
+            <br>
+            <p>Ranking: {{ cs.ranking }}</p>
+            <br>
+            <p>Score: {{ cs.score }}</p>    
+        </div>
+    {% endif %}
+    
+    <br>
+
+{% endfor %}
+
 
 <script>
     window.onload = function(){
@@ -8,4 +26,6 @@
         document.getElementById('list_puntaje').style.color= 'white';
     }
 </script>
+
+
 {% endblock %}
