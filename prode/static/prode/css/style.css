@@ -23,35 +23,6 @@
 
 /*------------------------------------------------------------------------------------*/
 
-/* apuestas.html styles */
-
-.box {
-    width: 200px;
-    height: 200px;    
-    padding: 50px;
-    box-sizing: border-box;
-    background: rgb(107, 11, 110);
-}
-
-.box2 {
-    width: 200px;
-    height: 200px;    
-    padding: 50px;
-    box-sizing: border-box;
-    background: rgb(18, 11, 110);
-}
-
-.box3 {
-    width: 200px;
-    height: 200px;    
-    padding: 50px;
-    box-sizing: border-box;
-    background: rgb(11, 90, 110);
-}
-
-/* fin apuestas.html styles */
-
-
 /* navigation.html styles */
 
 #list_apuestas:hover { 
@@ -74,3 +45,18 @@
     color: white;
 }
 /* fin apuestas.html styles */
+
+/* Footer */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(255, 255, 246);
+    color: black;
+    text-align: center;
+    height: 10%;
+}
+
+/* Footer */

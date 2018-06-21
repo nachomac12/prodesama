@@ -13,11 +13,15 @@
                 <tr>
                     <th>{{ match.start|date:'d-m-Y' }}</th>
                     <th class="text-center">{{ match.start|time:'H:i' }}</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
                     <td class="text-center"><strong>{{ match.team1.name }}</strong></td>
-                    <td class="text-center"><strong>{{ match.team2.name }}</strong></td>
+                    <td>-</td>
+                    <td><strong>{{ match.team2.name }}</strong></td>
                     <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
                 </tr>
             {% endfor %} 
@@ -28,6 +32,13 @@
     </div>
 
 </div>
+
+
+<div class="footer">
+    <p></p>
+    <p>SamaProject | Copyright © 2018</p>
+</div>
+
 {% endblock %}
 
 
