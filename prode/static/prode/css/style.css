@@ -61,6 +61,7 @@
     color: black;
     text-align: center;
     height: 8%;
+<<<<<<< HEAD
 }
 
 /* Footer */
@@ -74,6 +75,8 @@
     padding: 10px;
     border: 2px solid rgb(161, 147, 147);
     margin: 0 auto;
+=======
+>>>>>>> 6b13a7898a813c2d48bf5ccb8b773f6d124131e4
 }
 
 /* fin puntaje.html styles */
