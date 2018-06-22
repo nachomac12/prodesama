@@ -11,14 +11,6 @@ from django.utils import timezone
 import datetime
 
 
-class IndexView(generic.ListView):
-    template_name = 'prode/index.html'
-    context_object_name = 'match_list'
-
-    def get_queryset(self):
-        """Return all existing match on database."""
-        return Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:10]
-
 def signup(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -32,6 +24,14 @@ def signup(request):
     else:
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
+
+
+class IndexView(generic.ListView):
+    template_name = 'prode/index.html'
+    context_object_name = 'match_list'
+    def get_queryset(self):
+        """Return all existing match on database."""
+        return Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:10]
 
 
 class HomeView(generic.ListView):
@@ -59,6 +59,8 @@ class BetView(generic.DetailView):
     #Guardo los goles de los input en la DB
     def post(self, request):
         bet_id = request.POST.get("bet_id")
+        user_id = request.POST.get("user_id")
+        u = User.objects.get(id=user_id)
         if bet_id:
             bet = Bet.objects.get(pk=bet_id)
             form = BetForm(request.POST, instance=bet)
@@ -72,6 +74,13 @@ class BetView(generic.DetailView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
+            if u.comps.exists()==False:
+                c1 = Competition.objects.get(id=1)
+                c2 = Competition.objects.get(id=2)
+                comp1 = CompetitionStat(user=u, comp=c1)
+                comp1.save()
+                comp2 = CompetitionStat(user=u, comp=c2)
+                comp2.save()
             return redirect ('prode:home')
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)

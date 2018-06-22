@@ -1,23 +1,22 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
 
-{% for cs in comp_stats %}
+    {% for cs in comp_stats %}
 
-    {% if user == cs.user %}
-        <div class="box text-center"> 
-            <h2>{{ cs.comp }}</h2>
+        {% if user == cs.user %}
+            <div class="box text-center"> 
+                <h2>{{ cs.comp }}</h2>
+                <br>
+                <p>{{ cs.user }}</p>
+                <br>
+                <p>Ranking: {{ cs.ranking }}</p>
+                <br>
+                <p>Score: {{ cs.score }}</p>    
+            </div>        
             <br>
-            <p>{{ cs.user }}</p>
-            <br>
-            <p>Ranking: {{ cs.ranking }}</p>
-            <br>
-            <p>Score: {{ cs.score }}</p>    
-        </div>
-    {% endif %}
-    
-    <br>
+        {% endif %}    
 
-{% endfor %}
+   {% endfor %}
 
 
 <script>

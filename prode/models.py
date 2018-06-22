@@ -77,10 +77,10 @@ class Bet(models.Model):
 
 
 class CompetitionStat(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comps')
     score = models.PositiveIntegerField(default=0)
     ranking = models.PositiveIntegerField(null=True)
-    comp = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True)
+    comp = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True, related_name='comps')
 
     def get_score(self):
         lista = [self.user.bets.all()] 
