@@ -1,6 +1,10 @@
-/*scroll lista de partidos */
+/* BEGIN SCROLL LISTA DE PARTIDOS */
+* {
+    font-family: sans-serif;    
+}
+
 .lista-proximos-partidos{
-    height: 200px;
+    height: 175px;
     overflow-y: auto;
     overflow-x:hidden;
 }
@@ -8,11 +12,11 @@
 .lista-proximos-partidos::-webkit-scrollbar{
     display: none;
 }
-/*end scroll lista de partidos' */
+/* END SCROLL LISTA DE PARTIDOS */
 
 /*------------------------------------------------------------------------------------*/
 
-/*Modal style*/
+/* BEGIN MODAL STYLES */
 
 .modal-header{
     background-color: rgb(44, 44, 44);
@@ -21,11 +25,11 @@
     font-size: 40px;
 }
 
-/*End modal-style*/
+/* END MODAL STYLES */
 
 /*------------------------------------------------------------------------------------*/
 
-/* navigation.html styles */
+/* BEGIN NAVIGATION.HTML STYLES */
 
 #list_apuestas:hover { 
     background-color: #007bff;
@@ -46,11 +50,11 @@
     background-color: #dc3545;
     color: white;
 }
-/* fin apuestas.html styles */
+/* END NAVIGATION.HTML STYLES */
 
 /*------------------------------------------------------------------------------------*/
 
-/* Footer */
+/* BEGIN FOOTER */
 
 .footer {
     position: fixed;
@@ -63,11 +67,11 @@
     height: 8%;
 }
 
-/* Footer */
+/* END FOOTER */
 
 /*------------------------------------------------------------------------------------*/
 
-/* puntaje.html styles */
+/* BEGIN PUNTAJE.HTML STYLES */
 
 .box {
     width: 50%;
@@ -76,4 +80,11 @@
     margin: 0 auto;
 }
 
-/* fin puntaje.html styles */
+/* END PUNTAJE.HTML STYLES */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN INDEX.HTML STYLES */ 
+
+/* END INDEX.HTML STYLES */
+

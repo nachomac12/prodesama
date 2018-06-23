@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-{% for c in competitions %}
+<!-- {% for c in competitions %}
 <h2 class="text-secondary" style="font-family: 'Times New Roman', Times, serif">{{c.name}}</h2>
 
 <div class="lista-proximos-partidos">
@@ -20,10 +20,10 @@
                 {% endfor %}
                 <input type="hidden" name="match" id="match" value="{{ match.id }}">
                 <td><img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                <td><strong>{{ match.team1.name }}</strong></td>  
+                <td>{{ match.team1.name }}</td>  
                 <td>{{ form.team1_score }}</td>
                 <td>{{ form.team2_score }}</td>
-                <td><strong>{{ match.team2.name}}</strong></td>
+                <td>{{ match.team2.name}}</td>
                 <td><img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
                 <td><button class="btn btn-primary" type="submit">Apostar</button></td>
             </tr>
@@ -32,7 +32,72 @@
         {% endfor %}
     </table>
 </div>
+<br>
 {% endfor %}
+ -->
+
+
+
+{% for c in competitions %}
+<h2 class="text-light text-center" style="font-family: serif">
+    {{c.name}}
+</h2>
+
+<div class="lista-proximos-partidos text-center">
+    
+    <div class="row">
+        
+        <div class="col-md-6 offset-md-3">
+            
+            {% for match in matchs %}
+            {% if c.name == match.competition.name %}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
+                    {% for bet in bets %}
+                        {% if match.id == bet.match.id %}
+                            <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
+                        {% endif %}
+                    {% endfor %}
+                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
+                    <div class="card">
+                        <h5 class="card-header">{{ match.start|date:'d-m-Y' }}</h5>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera">
+                                    <br>
+                                    {{ match.team1.name }}
+                                </div>
+                                <div class="col">
+                                    {{ form.team1_score }}
+                                </div>
+                                <div class="col">
+                                    {{ form.team2_score }}
+                                </div>
+                                <div class="col">
+                                    <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
+                                    <br>
+                                    {{ match.team2.name }}
+                                </div>
+                            </div>
+                        <button class="btn btn-primary" type="submit">Apostar</button>
+                        </div>
+                    </div>
+            </form>
+            {% endif %}
+            {% endfor %}
+        
+        </div>
+    
+    </div>    
+
+</div>
+<br>
+{% endfor %}
+
+
+
 
 <script>
     window.onload = function(){
@@ -40,5 +105,7 @@
         document.getElementById('list_apuestas').style.color= 'white';
     }
 </script>
+
+
 {% endblock %}
 

@@ -2,27 +2,23 @@
 {% load static %}
 {% block body_block %}
 
-<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018-2.jpg' %}); background-size: 35%;">
+<!-- <div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018-2.jpg' %}); background-size: 35%;">
 
     <div class="row">
     
         <div class="col-md-6 offset-md-3">
         
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped text-center">
             {% for match in match_list %}
                 <tr>
                     <th>{{ match.start|date:'d-m-Y' }}</th>
-                    <th class="text-center">{{ match.start|time:'H:i' }}</th>
-                    <th></th>
-                    <th></th>
+                    <th>{{ match.start|time:'H:i' }}</th>
                     <th></th>
                 </tr>
                 <tr>
-                    <td><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                    <td class="text-center"><strong>{{ match.team1.name }}</strong></td>
+                    <td><strong><img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera"><br>{{ match.team1.name }}</strong></td>
                     <td>-</td>
-                    <td><strong>{{ match.team2.name }}</strong></td>
-                    <td><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
+                    <td><strong><img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera"><br>{{ match.team2.name }}</strong></td>
                 </tr>
             {% endfor %} 
             </table> 
@@ -31,7 +27,58 @@
     
     </div>
 
+</div> -->
+
+
+<div class="jumbotron jumbotron-fluid" style="background-size: 100%; background: url({% static 'prode/images/mundial2018-2.jpg' %}); background-size: 35%;">
+
+ <!-- Columna de partidos por jugarse -->
+    
+    <div class="row">
+    
+        <div class="col-md-4 offset-md-4">
+            
+            {% for match in match_list %}
+            
+                <div class="card text-white text-center">
+                    <h5 class="card-header" style="background: rgb(32, 44, 73); border-color:white">
+                        {{ match.start|date:'d-m-Y' }} | {{ match.start|time:'H:i' }}
+                    </h5>
+                    
+                    <div class="card-body" style="background: rgb(16, 18, 32)">
+                    
+                        <div class="row">
+                            
+                            <div class="col">
+                                <img src="{{ 'static/' }}{{ match.team1.flag }}" alt="Bandera">
+                                <br>
+                                {{ match.team1.name }}
+                            </div>
+                            
+                            <div class="col">
+                                <img src="{{ 'static/' }}{{ match.team2.flag }}" alt="Bandera">
+                                <br>
+                                {{ match.team2.name }}
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+            <br>
+            
+            {% endfor %}
+        
+        </div>
+    
+    </div>
+
+<!-- Fin Columna de partidos por jugarse -->
+
 </div>
+
 
 
 <div class="footer">

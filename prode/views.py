@@ -109,7 +109,7 @@ class MyDataView(generic.DetailView):
             return redirect('prode:home')
         return render(request, self.template_name)
 
-class GroupView(generic.DetailView):
-    template_name = 'prode/grupos.html'
-    def get(self, request):
-        return render(request, self.template_name)
+# class GroupView(generic.DetailView):
+#     template_name = 'prode/grupos.html'
+#     def get(self, request):
+#         return render(request, self.template_name)

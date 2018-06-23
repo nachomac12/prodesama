@@ -1,22 +1,39 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
 
-    {% for cs in comp_stats %}
+{% for cs in comp_stats %}
 
-        {% if user == cs.user %}
-            <div class="box text-center"> 
-                <h2>{{ cs.comp }}</h2>
+    {% if user == cs.user %}
+        
+        <div class="row text-center" style="opacity: 0.8">
+            
+            <div class="col-md-4 offset-md-4">    
+                
                 <br>
-                <p>{{ cs.user }}</p>
-                <br>
-                <p>Ranking: {{ cs.ranking }}</p>
-                <br>
-                <p>Score: {{ cs.score }}</p>    
-            </div>        
-            <br>
-        {% endif %}    
 
-   {% endfor %}
+                <div class="card">
+                    
+                    <h5 class="card-header"><strong>{{ cs.comp }}</strong></h5>
+                    
+                    <div class="card-body">
+                        <p>Ranking: {{ cs.ranking }}</p>
+                        <br>
+                        <p>Score: {{ cs.score }}</p>  
+                    </div>
+                
+                </div>       
+                
+                <br>
+                <br>
+
+            </div>
+        
+        </div>
+    
+    {% endif %}    
+
+{% endfor %}
+
 
 
 <script>

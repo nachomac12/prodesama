@@ -4,36 +4,49 @@
     <form method="post">
     {% csrf_token %}
     <input name="user_id" id="user_id" type="hidden" value="{{ user.id }}" formmethod="GET">
-        <!--USERNAME-->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
+        
+        <div class="row">   
+            
+            <div class="col-sm-5">
+                
+                <!--USERNAME-->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
+                    </div>
+                    <input class="form-control form-control-sm" name="username" id="id_username" type="text" value="{{ user.username }}">
+                </div>
+                <br>
+                
+                <!--NAME-->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                    </div>
+                    <input class="form-control form-control-sm" name="first_name" id="id_first_name" type="text" value="{{ user.first_name }}">
+                </div>    
+                <br>
+                
+                <!--LASTNAME-->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
+                    </div>
+                    <input class="form-control form-control-sm" name="last_name" id="id_last_name" type="text" value="{{ user.last_name }}">
+                </div>    
+                <br>
+                
+                <!--PASSWORD-->
+            
+                <button type="submit" class="btn btn-light text-success">Guardar</button>
             </div>
-            <input class="form-control form-control-sm" name="username" id="id_username" type="text" value="{{ user.username }}">
+        
         </div>
-        <br>
-        <!--NAME-->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-            </div>
-            <input class="form-control form-control-sm" name="first_name" id="id_first_name" type="text" value="{{ user.first_name }}">
-        </div>    
-        <br>
-        <!--LASTNAME-->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
-            </div>
-            <input class="form-control form-control-sm" name="last_name" id="id_last_name" type="text" value="{{ user.last_name }}">
-        </div>    
-        <br>
-        <!--PASSWORD-->
-
-    <button type="submit" class="btn btn-success">Guardar</button>
-
+    
     </form>
 </div>
+
+
 
 <script>
     window.onload = function(){
@@ -41,4 +54,6 @@
         document.getElementById('list_datos').style.color= 'white';
     }
 </script>
+
+
 {% endblock %}
