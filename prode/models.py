@@ -90,6 +90,14 @@ class CompetitionStat(models.Model):
                     self.score += i.result
         return self.score
 
+    def get_ranking(self):
+        comp_stats = CompetitionStat.objects.filter(comp=self.comp).order_by('-score')
+        lista = [cs for cs in comp_stats]
+        for elem in lista:
+            if (elem.user == self.user):
+                self.ranking = lista.index(elem) + 1
+        return self.ranking
+
     def __str__(self):
         return(str(self.user) + " - " + str(self.comp))
 

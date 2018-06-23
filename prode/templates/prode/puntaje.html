@@ -1,38 +1,68 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
 
-{% for cs in comp_stats %}
-
-    {% if user == cs.user %}
         
-        <div class="row text-center" style="opacity: 0.8">
+<div class="row justify-content-center text-center" style="opacity: 0.8">
+    
             
-            <div class="col-md-4 offset-md-4">    
+    <div class="col-md-4">    
+    
+        {% for cs in comp_stats %}
+            
+            {% if user == cs.user %}
                 
-                <br>
-
                 <div class="card">
-                    
+                
                     <h5 class="card-header"><strong>{{ cs.comp }}</strong></h5>
-                    
+                
                     <div class="card-body">
                         <p>Ranking: {{ cs.ranking }}</p>
                         <br>
                         <p>Score: {{ cs.score }}</p>  
                     </div>
                 
-                </div>       
-                
+                </div>    
                 <br>
-                <br>
+            
+            {% endif %}   
 
+        {% endfor %}
+    
+    </div>
+
+
+    <div class="col-md-7">
+        
+        <div class="card">
+            
+            <h5 class="card-header"><strong>Historial de apuestas</strong></h5>
+
+            <div class="card-body">
+                
+                {% for bet in bets %}
+
+                    {% if user == bet.user %} 
+
+                        <p class="text-dark"> 
+                            En el partido <mark class="text-success">{{ bet.match }}</mark> apostaste 
+                            <mark class="text-primary">{{ bet.match.team1 }} {{ bet.team1_score }}
+                            - {{ bet.match.team2 }} {{ bet.team2_score }}</mark> 
+                        </p>    
+                    
+                    {% endif %}
+                    
+                {% endfor %}
+            
             </div>
         
         </div>
-    
-    {% endif %}    
 
-{% endfor %}
+    </div>
+
+
+</div>
+
+
 
 
 

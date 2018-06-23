@@ -2,42 +2,6 @@
 {% load static %}
 {% block content %}
 
-<!-- {% for c in competitions %}
-<h2 class="text-secondary" style="font-family: 'Times New Roman', Times, serif">{{c.name}}</h2>
-
-<div class="lista-proximos-partidos">
-    <table class="table">
-        {% for match in matchs %}
-        {% if c.name == match.competition.name %}
-        <form method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
-            <tr>
-                {% for bet in bets %}
-                {% if match.id == bet.match.id %}
-                <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
-                {% endif %}
-                {% endfor %}
-                <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                <td><img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera"></td>
-                <td>{{ match.team1.name }}</td>  
-                <td>{{ form.team1_score }}</td>
-                <td>{{ form.team2_score }}</td>
-                <td>{{ match.team2.name}}</td>
-                <td><img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera"></td>
-                <td><button class="btn btn-primary" type="submit">Apostar</button></td>
-            </tr>
-        </form>
-        {% endif %}
-        {% endfor %}
-    </table>
-</div>
-<br>
-{% endfor %}
- -->
-
-
-
 {% for c in competitions %}
 <h2 class="text-light text-center" style="font-family: serif">
     {{c.name}}

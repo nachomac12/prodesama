@@ -7,4 +7,5 @@ class Command(BaseCommand):
         stats = CompetitionStat.objects.all()
         for c in stats:
             c.get_score()
+            c.get_ranking()
             c.save()

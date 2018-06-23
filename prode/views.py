@@ -28,10 +28,13 @@ def signup(request):
 
 class IndexView(generic.ListView):
     template_name = 'prode/index.html'
-    context_object_name = 'match_list'
-    def get_queryset(self):
-        """Return all existing match on database."""
-        return Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:10]
+    
+    def get(self, request):
+        matches = Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:4]
+        comp_stats = CompetitionStat.objects.all()
+        competition = Competition.objects.all()
+        args = {'matches': matches, 'competition':competition ,'comp_stats': comp_stats}
+        return render(request, self.template_name, args)
 
 
 class HomeView(generic.ListView):
@@ -43,7 +46,6 @@ class HomeView(generic.ListView):
 class BetView(generic.DetailView):
     template_name = 'prode/apuestas.html'
 
-    #Obtengo todos los elementos de BetForm y todos los partidos de la DB
     def get(self, request):
         m = Match.objects.all().order_by('start')
         matchs = []
@@ -56,7 +58,6 @@ class BetView(generic.DetailView):
         args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
         return render(request, self.template_name, args)
 
-    #Guardo los goles de los input en la DB
     def post(self, request):
         bet_id = request.POST.get("bet_id")
         user_id = request.POST.get("user_id")
@@ -90,7 +91,8 @@ class ScoreView(generic.DetailView):
     template_name = 'prode/puntaje.html'
     def get(self, request):
         comp_stats = CompetitionStat.objects.all()
-        return render(request, self.template_name, {'comp_stats':comp_stats})
+        bets = Bet.objects.all()[:5]
+        return render(request, self.template_name, {'comp_stats':comp_stats, 'bets':bets})
 
 
 class MyDataView(generic.DetailView):
