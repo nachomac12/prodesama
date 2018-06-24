@@ -61,7 +61,7 @@ class Bet(models.Model):
             self.result = 1
         elif (self.match.get_endscore() == self.match.team2) and (self.team2_score > self.team1_score):
             self.result = 1
-        elif (self.match.team1_score == self.team1_score) and (self.match.team2_score == self.team2_score):
+        elif (self.match.end_match()==True) and (self.match.team1_score == self.team1_score) and (self.match.team2_score == self.team2_score):
             self.result = 3
         elif (self.match.get_endscore() == "tie") and (self.team1_score == self.team2_score):
             self.result = 1

@@ -31,7 +31,7 @@ class IndexView(generic.ListView):
     
     def get(self, request):
         matches = Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:4]
-        comp_stats = CompetitionStat.objects.all()
+        comp_stats = CompetitionStat.objects.filter(ranking__lte=5)
         competition = Competition.objects.all()
         args = {'matches': matches, 'competition':competition ,'comp_stats': comp_stats}
         return render(request, self.template_name, args)
@@ -91,7 +91,7 @@ class ScoreView(generic.DetailView):
     template_name = 'prode/puntaje.html'
     def get(self, request):
         comp_stats = CompetitionStat.objects.all()
-        bets = Bet.objects.all()[:5]
+        bets = Bet.objects.all()
         return render(request, self.template_name, {'comp_stats':comp_stats, 'bets':bets})
 
 

@@ -37,24 +37,38 @@
             
             <h5 class="card-header"><strong>Historial de apuestas</strong></h5>
 
-            <div class="card-body">
-                
-                {% for bet in bets %}
+            <div class="lista-proximos-partidos">
 
-                    {% if user == bet.user %} 
+                <div class="card-body">
 
-                        <p class="text-dark"> 
-                            En el partido <mark class="text-success">{{ bet.match }}</mark> apostaste 
-                            <mark class="text-primary">{{ bet.match.team1 }} {{ bet.team1_score }}
-                            - {{ bet.match.team2 }} {{ bet.team2_score }}</mark> 
-                        </p>    
-                    
-                    {% endif %}
-                    
-                {% endfor %}
+                    {% for bet in bets %}
+
+                        {% if user == bet.user %} 
+
+                            <mark>
+
+                                En el partido {{ bet.match }} apostaste
+                                <br>
+                                <b class="text-success"> 
+                                {{bet.match.team1 }} {{ bet.team1_score }}
+                                - {{ bet.match.team2 }} {{ bet.team2_score }} 
+                                </b>
+                                <br>
+                                Y obtuviste <b class="text-success">{{ bet.result }} punto/s</b>
+                                <br>
+
+                            </mark>     
+
+                            <br>
+                        
+                        {% endif %}
+                        
+                    {% endfor %}
+                        
+                </div>
             
             </div>
-        
+
         </div>
 
     </div>
