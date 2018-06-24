@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
 
+{% include 'prode/messages.html' %}
+
 {% for c in competitions %}
 <h2 class="text-light text-center" style="font-family: serif">
     {{c.name}}

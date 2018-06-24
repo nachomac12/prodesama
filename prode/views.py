@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from prode.forms import RegistrationForm
@@ -82,7 +83,8 @@ class BetView(generic.DetailView):
                 comp1.save()
                 comp2 = CompetitionStat(user=u, comp=c2)
                 comp2.save()
-            return redirect ('prode:home')
+            messages.info(request, "Apuesta realizada!")
+            return redirect ('prode:apuestas')
         args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
@@ -108,7 +110,8 @@ class MyDataView(generic.DetailView):
             user.last_name = request.POST["last_name"]
             user.username = request.POST["username"]
             user.save()
-            return redirect('prode:home')
+            messages.success(request, 'Tus datos se han modificado', extra_tags='alert')
+            return redirect('prode:datos')
         return render(request, self.template_name)
 
 # class GroupView(generic.DetailView):

@@ -5,7 +5,9 @@
     {% csrf_token %}
     <input name="user_id" id="user_id" type="hidden" value="{{ user.id }}" formmethod="GET">
         
-        <div class="row">   
+    {% include 'prode/messages.html' %}
+
+        <div class="row justify-content-center">   
             
             <div class="col-sm-5">
                 
@@ -36,17 +38,17 @@
                 </div>    
                 <br>
                 
-                <!--PASSWORD-->
-            
                 <button type="submit" class="btn btn-light text-success">Guardar</button>
+            </div>
+
+            <div class="col-sm-5">
+                
             </div>
         
         </div>
     
     </form>
 </div>
-
-
 
 <script>
     window.onload = function(){
