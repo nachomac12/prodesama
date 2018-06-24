@@ -3,8 +3,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.utils.translation import ugettext as _
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
 from prode.forms import RegistrationForm
 from .models import Team, Match, Bet, Competition, CompetitionStat
 from .forms import BetForm
@@ -27,6 +30,7 @@ def signup(request):
     return render(request, 'prode/signup.html', {'form': form})
 
 
+@login_required
 def validate_username(request):
     username = request.GET.get('username', None)
     data = {
@@ -35,6 +39,22 @@ def validate_username(request):
     if data['is_taken']:
         data['error_message'] = 'Ese nombre de usuario ya está registrado.'
     return JsonResponse(data)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, _('Tu contraseña ha sido modificada'))
+            return redirect('prode:datos')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'prode/change_password.html', {'form': form})
 
 
 class IndexView(generic.ListView):

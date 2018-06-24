@@ -27,7 +27,7 @@
                     {% endfor %}
                     <input type="hidden" name="match" id="match" value="{{ match.id }}">
                     <div class="card">
-                        <h5 class="card-header">{{ match.start|date:'d-m-Y' }}</h5>
+                        <h5 class="card-header" style="background: rgb(76, 167, 65)">{{ match.start|date:'d-m-Y' }}</h5>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -51,6 +51,7 @@
                         </div>
                     </div>
             </form>
+            <br>
             {% endif %}
             {% endfor %}
         
