@@ -1,53 +1,71 @@
 {% extends "prode/navigation.html" %}
 {% block content %}
 <div class="container js-message">
-    <form method="post">
-    {% csrf_token %}
-    <input name="user_id" id="user_id" type="hidden" value="{{ user.id }}" formmethod="GET">
-        
-    {% include 'prode/messages.html' %}
+    
+    
+{% include 'prode/messages.html' %}
 
-        <div class="row justify-content-center">   
+<div class="row justify-content-center">   
+    
+    <div class="col-sm-5">
+        
+        <form method="post">
+            {% csrf_token %}
+            <input name="user_id" id="user_id" type="hidden" value="{{ user.id }}"formmethod="GET">
             
-            <div class="col-sm-5">
-                
-                <!--USERNAME-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
-                    </div>
-                    <input class="form-control form-control-sm" name="username" id="id_username" type="text" value="{{ user.username }}">
+            <!--USERNAME-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                 </div>
-                <br>
-                
-                <!--NAME-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-                    </div>
-                    <input class="form-control form-control-sm" name="first_name" id="id_first_name" type="text" value="{{ user.first_name }}">
-                </div>    
-                <br>
-                
-                <!--LASTNAME-->
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
-                    </div>
-                    <input class="form-control form-control-sm" name="last_name" id="id_last_name" type="text" value="{{ user.last_name }}">
-                </div>    
-                <br>
-                
-                <!--PASSWORD-->
-            
-                <button type="submit" class="btn btn-light text-success username_validado">Guardar</button>
+                <input class="form-control form-control-sm" name="username" id="id_username" type="text" value="{{ user.username }}">
             </div>
+            <br>
 
-            <div class="col-sm-5">
-                
-            </div>
+            <!--NAME-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+                </div>
+                <input class="form-control form-control-sm" name="first_name" id="id_first_name" type="text" value="{{ user.first_name }}">
+            </div>    
+            <br>
+
+            <!--LASTNAME-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Apellido</span>
+                </div>
+                <input class="form-control form-control-sm" name="last_name" id="id_last_name" type="text" value="{{ user.last_name }}">
+            </div>    
+            <br>
+
+            <!--PASSWORD-->
         
-        </div>
+            <button type="submit" class="btn btn-light text-success username_validado">Guardar</button>
+        
+        </form>
+    
+    </div>
+
+    
+    <div class="col-sm-6 text-white">
+        
+        <!-- Acá iría lo de change_password.html de alguna manera 
+            Lo que está acá es a modo de ejemplo de como iría
+            puesto lo de change_password.html. Obviamente
+            que le voy a poner estilos-->
+        Old password: <input type="text">
+        <br>
+        New password: <input type="text">
+        <br>
+        New password confirmation: <input type="text">
+        <br>
+        <button>Guardar contraseña</button>
+    
+    </div>
+
+</div>
     
     </form>
 </div>
