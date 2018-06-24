@@ -37,7 +37,7 @@ def validate_username(request):
         'is_taken': User.objects.filter(username__iexact=username).exists()
     }
     if data['is_taken']:
-        data['error_message'] = 'Ese nombre de usuario ya está registrado.'
+        data['error_message'] = 'Ese nombre de usuario ya está registrado. Ingrese otro.'
     return JsonResponse(data)
 
 
