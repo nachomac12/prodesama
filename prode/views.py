@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
@@ -27,12 +27,20 @@ def signup(request):
     return render(request, 'prode/signup.html', {'form': form})
 
 
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)
+
+
 class IndexView(generic.ListView):
     template_name = 'prode/index.html'
     
     def get(self, request):
         matches = Match.objects.filter(competition__available=True).filter(end__gte=timezone.now()).order_by('start')[:4]
-        comp_stats = CompetitionStat.objects.filter(ranking__lte=5)
+        comp_stats = CompetitionStat.objects.filter(ranking__lte=5).order_by('ranking')
         competition = Competition.objects.all()
         args = {'matches': matches, 'competition':competition ,'comp_stats': comp_stats}
         return render(request, self.template_name, args)
