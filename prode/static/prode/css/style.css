@@ -37,17 +37,12 @@
 }
 
 #list_puntaje:hover { 
-    background-color: #17a2b8;
-    color: white;
-}
-
-#list_grupos:hover { 
-    background-color: #28a745;
+    background-color: #dc3545;
     color: white;
 }
 
 #list_datos:hover { 
-    background-color: #dc3545;
+    background-color: #28a745;
     color: white;
 }
 /* END NAVIGATION.HTML STYLES */
