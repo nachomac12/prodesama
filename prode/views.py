@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
@@ -24,6 +24,14 @@ def signup(request):
     else:
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
+
+
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)
 
 
 class IndexView(generic.ListView):

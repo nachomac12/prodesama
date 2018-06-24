@@ -14,5 +14,6 @@ urlpatterns = [
     path('home/apuestas', login_required(views.BetView.as_view()), name='apuestas'),
     path('home/datos', login_required(views.MyDataView.as_view()), name='datos'),
     path('home/puntaje', login_required(views.ScoreView.as_view()), name='puntaje'),
+    path('validate_username/', views.validate_username, name='validate_username'),
     # path('home/grupos', login_required(views.GroupView.as_view()), name='grupos'),
     ] 
