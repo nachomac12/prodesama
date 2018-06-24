@@ -41,12 +41,13 @@ $( document ).ready(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.is_taken) {
+                    msg = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+data.error_message+'</div>'
                     $('.username_validado').attr("disabled", true);
-                    alert("Ya existe un usuario con ese nombre");
+                    $('.js-message').before(msg)
                 } else {
-                    $('#.username_validado').attr("disabled", false);
+                    $('.username_validado').attr("disabled", false);
                 }
             }
         });
     });
-});
+}); 
