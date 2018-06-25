@@ -51,4 +51,7 @@ $( document ).ready(function() {
             }
         });
     });
+
+    //Carga form change_password
+    $('#div-change-password').load('change_password')
 }); 
