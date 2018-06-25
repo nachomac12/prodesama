@@ -52,6 +52,7 @@ def change_password(request):
             return redirect('prode:datos')
         else:
             messages.error(request, _('Please correct the error below.'))
+            return redirect('prode:datos')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'prode/change_password.html', {'form': form})
