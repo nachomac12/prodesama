@@ -51,11 +51,7 @@ def change_password(request):
             messages.success(request, _('Tu contraseña ha sido modificada'))
             return redirect('prode:datos')
         else:
-<<<<<<< HEAD
             messages.error(request, _('Las contraseñas deben coincidir.'))
-=======
-            messages.error(request, _('Los passwords deben coincidir.'))
->>>>>>> 23ec9e13f83bc3d73137ece4891e2749c2c18a5d
             return redirect('prode:datos')
     else:
         form = PasswordChangeForm(request.user)
