@@ -51,7 +51,7 @@ def change_password(request):
             messages.success(request, _('Tu contraseña ha sido modificada'))
             return redirect('prode:datos')
         else:
-            messages.error(request, _('Please correct the error below.'))
+            messages.error(request, _('Las contraseñas deben coincidir.'))
             return redirect('prode:datos')
     else:
         form = PasswordChangeForm(request.user)
@@ -123,9 +123,10 @@ class BetView(generic.DetailView):
 class ScoreView(generic.DetailView):
     template_name = 'prode/puntaje.html'
     def get(self, request):
+        comps = Competition.objects.all()
         comp_stats = CompetitionStat.objects.all()
         bets = Bet.objects.all()
-        return render(request, self.template_name, {'comp_stats':comp_stats, 'bets':bets})
+        return render(request, self.template_name, {'comps':comps,'comp_stats':comp_stats, 'bets':bets})
 
 
 class MyDataView(generic.DetailView):

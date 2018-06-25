@@ -7,25 +7,39 @@
             
     <div class="col-md-4">    
     
-        {% for cs in comp_stats %}
+        {% for c in comps %}
+                
+            <div class="card">
             
-            {% if user == cs.user %}
-                
-                <div class="card">
-                
-                    <h5 class="card-header"><strong>{{ cs.comp }}</strong></h5>
-                
-                    <div class="card-body">
-                        <p>Ranking: {{ cs.ranking }}</p>
-                        <br>
-                        <p>Score: {{ cs.score }}</p>  
-                    </div>
-                
-                </div>    
-                <br>
+                <h5 class="card-header"><strong>{{ c.name }}</strong></h5>
             
-            {% endif %}   
-
+                <div class="card-body">
+                    
+                    {% for cs in comp_stats %}
+                        
+                        {% if c == cs.comp %}     
+                            
+                            {% if user == cs.user %}
+                            
+                                {% if cs.ranking == None %}
+                                    <p>Aún no posees ranking para esta competencia</p>
+                                {% else %}
+                                    <p>Ranking: {{ cs.ranking }}</p>
+                                {% endif %}
+                                <br>
+                                <p>Score: {{ cs.score }}</p>  
+                            
+                            {% endif %}
+                        
+                        {% endif %}
+                    
+                    {% endfor %}
+                
+                </div>
+            
+            </div>    
+            <br>
+            
         {% endfor %}
     
     </div>
