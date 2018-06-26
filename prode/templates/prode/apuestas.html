@@ -9,27 +9,24 @@
         {{c.name}}
     </h2>
 
-
-    <div class="row text-center">
-        
-        <div class="col-md-6 offset-md-3">
             
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleControls{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+        
+        <div class="row text-center">
+            
+            <div class="col-md-6 offset-md-3">
                 
                 <div class="carousel-inner">
                     
-                    {% for match in matchs %}
+                    <div class="carousel-item active">
                         
-                        {% if c.name == match.competition.name %}
-                            
-                            {% if forloop.first %}
-                                <div class="carousel-item active">
-                            {% else %}
-                                <div class="carousel-item">
-                            {% endif %}
-                            
-                            <form method="POST">
-                                
+                        {% for match in matchs %}
+
+                            {% if c.name == match.competition.name %}
+
+
+                                <form method="POST"> <!-- Recomiendo minimizar esto para poder leer 
+                                                          bien el código -->
                                 {% csrf_token %}
                                 <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
                                     {% for bet in bets %}
@@ -63,30 +60,39 @@
                                         </div>
                                     </div>
                             
-                            </form>
+                                </form>
+                            
+                    
+                {% if not forloop.last %}
+                    </div> <!--Fin DIV carousel item active si se cumple la condición-->
+                    <div class="carousel-item">
+                {% endif %}
                         
-                                </div><!-- Fin DIV carousel-item -->
-                        
-                        {% endif %}
-                  
-                    {% endfor %}
-                
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                                    
+                            {% endif %}
+                            
+                        {% endfor %}
+                    
+                    </div> <!-- Fin DIV carousel item active -->               
                 
                 </div> <!-- Fin DIV carousel inner -->
+                
+                <a class="carousel-control-prev" href="#carouselExampleControls{{ forloop.counter }}" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls{{ forloop.counter }}" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             
-            </div><!-- Fin DIV carousel-->
+            </div> <!--Fin DIV Col-->
         
-        </div>
+        </div> <!--Fin DIV Row-->
     
-    </div>
+    </div><!-- Fin DIV carousel-->
+        
+
     <br>    
 
 
