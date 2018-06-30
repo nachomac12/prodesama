@@ -55,20 +55,20 @@ class Bet(models.Model):
     team1_score = models.PositiveIntegerField(default=0)
     team2_score = models.PositiveIntegerField(default=0)
     result = models.PositiveIntegerField(default=0, null=True)
+    calculated = models.BooleanField(default=False)
 
     def get_result(self):
-        if (self.match.get_endscore() == self.match.team1) and (self.team1_score > self.team2_score):
-            self.result = 1
-        elif (self.match.get_endscore() == self.match.team2) and (self.team2_score > self.team1_score):
-            self.result = 1
-        elif (self.match.end_match()==True) and (self.match.team1_score == self.team1_score) and (self.match.team2_score == self.team2_score):
-            self.result = 3
-        elif (self.match.get_endscore() == "tie") and (self.team1_score == self.team2_score):
-            self.result = 1
-        else: 
-            self.result = 0
-        return self.result
-
+            if (self.match.get_endscore() == self.match.team1) and (self.team1_score > self.team2_score):
+                self.result = 1
+            elif (self.match.get_endscore() == self.match.team2) and (self.team2_score > self.team1_score):
+                self.result = 1
+            elif (self.match.end_match()==True) and (self.match.team1_score == self.team1_score) and (self.match.team2_score == self.team2_score):
+                self.result = 3
+            elif (self.match.get_endscore() == "tie") and (self.team1_score == self.team2_score):
+                self.result = 1
+            else: 
+                self.result = 0
+            return self.result
     class Meta:
         unique_together = ('user', 'match')
 
@@ -87,7 +87,10 @@ class CompetitionStat(models.Model):
         for elem in lista:
             for i in elem:
                 if (self.comp == i.match.competition):
-                    self.score += i.result
+                    if i.calculated == False:
+                        self.score += i.result
+                        i.calculated = True
+                        i.save()
         return self.score
 
     def get_ranking(self):

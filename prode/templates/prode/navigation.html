@@ -1,16 +1,37 @@
 {% extends "prode/base.html" %}
 {% load static %}
 {% block body_block %}
-<div class="container-fluid">
+
+<div class="container-fluid text-justify">
     <div class="row">
         
-        <div class="col-2 text-center">
+        <div class="col-2">
             <div class="list-group">
-                <a href="{% url 'prode:home' %}" class="list-group-item list-group-item-action">Home</a>
-                <a href="apuestas" id="list_apuestas" class="list-group-item list-group-item-action">Apuestas</a>
-                <a href="puntaje" id="list_puntaje" class="list-group-item list-group-item-action">Puntaje</a>
+                <a href="{% url 'prode:home' %}" class="list-group-item list-group-item-action">
+                    <i class="material-icons vertical-align-middle padding-bottom-3">
+                        home
+                    </i>
+                    Home
+                </a>
+                <a href="apuestas" id="list_apuestas" class="list-group-item list-group-item-action">
+                    <i class="material-icons vertical-align-middle padding-bottom-3">
+                        thumb_up
+                    </i>
+                    Apuestas
+                </a>
+                <a href="puntaje" id="list_puntaje" class="list-group-item list-group-item-action">
+                    <i class="material-icons vertical-align-middle padding-bottom-3">
+                        trending_up
+                    </i>
+                    Estadísticas
+                </a>
                 <!-- <a href="grupos" id="list_grupos" class="list-group-item list-group-item-action disabled">Mis grupos</a> -->
-                <a href="datos" id="list_datos" class="list-group-item list-group-item-action">Mis datos</a>
+                <a href="datos" id="list_datos" class="list-group-item list-group-item-action">    
+                    <i class="material-icons vertical-align-middle padding-bottom-3">    
+                        account_box
+                    </i>
+                    Mis datos
+                </a>
             </div>
         </div>
         
@@ -24,3 +45,4 @@
     </div>
 </div>
 {% endblock %}
+

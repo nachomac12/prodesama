@@ -29,8 +29,8 @@ class RegistrationForm(UserCreationForm):
         return user
 
 class BetForm(forms.ModelForm):
-    team1_score = forms.IntegerField(min_value=0, max_value=15, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Goal'}))
-    team2_score = forms.IntegerField(min_value=0, max_value=15, widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Goal'}))
+    team1_score = forms.IntegerField(min_value=0, max_value=15)
+    team2_score = forms.IntegerField(min_value=0, max_value=15)
     match = forms.ModelChoiceField(queryset=Match.objects.only('id'))
     class Meta:
         model = Bet

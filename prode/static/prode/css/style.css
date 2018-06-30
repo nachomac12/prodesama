@@ -5,6 +5,7 @@
 
 .lista-proximos-partidos{
     height: 350px;
+    width: auto;
     overflow-y: auto;
     overflow-x:hidden;
 }
@@ -79,7 +80,14 @@
 
 /*------------------------------------------------------------------------------------*/
 
-/* BEGIN INDEX.HTML STYLES */ 
+/* BEGIN OTROS */ 
+.vertical-align-middle { 
+    vertical-align: middle; 
+}
 
-/* END INDEX.HTML STYLES */
+.padding-bottom-3 {
+    padding-bottom: 3px;
+}
+
+/* END OTROS */
 

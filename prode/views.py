@@ -13,6 +13,7 @@ from .models import Team, Match, Bet, Competition, CompetitionStat
 from .forms import BetForm
 from django.utils import timezone
 import datetime
+from datetime import timedelta
 
 
 def signup(request):
@@ -80,14 +81,14 @@ class BetView(generic.DetailView):
 
     def get(self, request):
         m = Match.objects.all().order_by('start')
+        competitions = Competition.objects.filter(available=True)
         matchs = []
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
-        competitions = Competition.objects.filter(available=True)
         form = BetForm()
         bets = Bet.objects.all()
-        args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
+        args = {'form': form, 'matchs': matchs[:10], 'bets': bets, 'competitions': competitions}
         return render(request, self.template_name, args)
 
     def post(self, request):
