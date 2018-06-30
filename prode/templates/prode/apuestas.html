@@ -75,11 +75,11 @@
                                                         </div>
                                                         <div class="col">
                                                                 <input type="number" name="team1_score" max="15" id="id_team1_score" min="0" class="form-control text-center" required=""
-                                                                {% for bet in bets %} {% if match.id == bet.match.id %} value="{{ bet.team1_score }}" {% endif %} {% endfor %}>
+                                                                {% for bet in bets %} {% if user == bet.user %} {% if match.id == bet.match.id %} value="{{ bet.team1_score }}" {% endif %} {% endif %} {% endfor %}>
                                                         </div>
                                                         <div class="col">
                                                                 <input type="number" name="team2_score" max="15" id="id_team2_score" min="0" class="form-control text-center" required=""
-                                                                {% for bet in bets %} {% if match.id == bet.match.id %} value="{{ bet.team2_score }}" {% endif %} {% endfor %}>
+                                                                {% for bet in bets %} {% if user == bet.user %} {% if match.id == bet.match.id %} value="{{ bet.team2_score }}" {% endif %} {% endif %} {% endfor %}>
                                                         </div>
                                                         <div class="col">
                                                             <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
