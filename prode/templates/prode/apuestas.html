@@ -66,29 +66,27 @@
                                                     
                                                     <div id="collapse{{ forloop.counter }}" {% if forloop.first %} class="collapse show" {% else %} class="collapse" {% endif %} aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordionBet">
                                                             
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                        <div class="col">
-                                                            <img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera">
-                                                            <br>
-                                                            {{ match.team1.name }}
-                                                        </div>
-                                                        <div class="col">
-                                                                <input type="number" name="team1_score" max="15" id="id_team1_score" min="0" class="form-control text-center" required=""
-                                                                {% for bet in bets %} {% if user == bet.user %} {% if match.id == bet.match.id %} value="{{ bet.team1_score }}" {% endif %} {% endif %} {% endfor %}>
-                                                        </div>
-                                                        <div class="col">
-                                                                <input type="number" name="team2_score" max="15" id="id_team2_score" min="0" class="form-control text-center" required=""
-                                                                {% for bet in bets %} {% if user == bet.user %} {% if match.id == bet.match.id %} value="{{ bet.team2_score }}" {% endif %} {% endif %} {% endfor %}>
-                                                        </div>
-                                                        <div class="col">
-                                                            <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
-                                                            <br>
-                                                            {{ match.team2.name }}
-                                                        </div>
-                                                                </div> <!-- FIN ROW -->
-                                                                    <button class="btn btn-success" type="submit">Apostar</button>
-                                                            </div> <!-- FIN CARD-BODY -->
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera">
+                                                                    <br>
+                                                                    {{ match.team1.name }}
+                                                                </div>
+                                                                <div class="col">
+                                                                        {{ form.team1_score }}
+                                                                </div>
+                                                                <div class="col">
+                                                                        {{ form.team2_score }}
+                                                                </div>
+                                                                <div class="col">
+                                                                    <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
+                                                                    <br>
+                                                                    {{ match.team2.name }}
+                                                                </div>
+                                                            </div> <!-- FIN ROW -->
+                                                                <button class="btn btn-success" type="submit">Apostar</button>
+                                                        </div> <!-- FIN CARD-BODY -->
                                                     
                                                     </div> <!-- FIN COLLAPSE -->
                                                 
@@ -111,106 +109,21 @@
         
         {% endfor %} <!-- end competitions for -->
     
+    {% if competitions|length > 1 %}
     </div> <!-- FIN CAROUSEL INNER -->
     <a class="carousel-control-prev" href="#betsCarousel" role="button" data-slide="prev">
-            <i class="material-icons" style="font-size: 400px; color: white">
-                arrow_left
-            </i>
+        <i class="material-icons" style="font-size: 400px; color: white">
+            arrow_left
+        </i>
     </a>
     
     <a class="carousel-control-next" href="#betsCarousel" role="button" data-slide="next">
-            <i class="material-icons" style="font-size: 400px; color: white">
-                arrow_right
-            </i>
+        <i class="material-icons" style="font-size: 400px; color: white">
+            arrow_right
+        </i>
     </a>
+    {% endif %}
 </div> <!-- FIN CAROUSEL -->
-
-
-            
-{% comment %} <div id="betsCarousel" class="carousel slide" data-ride="carousel">
-
-    <div class="carousel-inner">
-
-        {% for c in competitions %}
-            <h2 class="text-light text-center" style="font-family: serif">
-                {{c.name}}
-            </h2>
-        
-            {% for match in matchs %}
-
-                {% if c.name == match.competition.name %}
-
-                    {% if forloop.first %}
-                        <div class="carousel-item active">
-                    {% else %}
-                        <div class="carousel-item">
-                    {% endif %}
-                    
-                    <div class="row text-center">
-        
-                        <div class="col-md-6 offset-md-3">
-
-                            <form method="POST">
-                                
-                                {% csrf_token %}
-                                <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
-                                    {% for bet in bets %}
-                                        {% if match.id == bet.match.id %}
-                                            <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
-                                        {% endif %}
-                                    {% endfor %}
-                                    <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                                    <div class="card">
-                                        <h5 class="card-header" style="background: rgb(76, 167, 65)">{{ match.start|date:'d-m-Y' }}</h5>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <img src="{{ '/static/' }}{{ match.team1.flag }}" alt="Bandera">
-                                                    <br>
-                                                    {{ match.team1.name }}
-                                                </div>
-                                                <div class="col">
-                                                    {{ form.team1_score }}
-                                                </div>
-                                                <div class="col">
-                                                    {{ form.team2_score }}
-                                                </div>
-                                                <div class="col">
-                                                    <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
-                                                    <br>
-                                                    {{ match.team2.name }}
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-success" type="submit">Apostar</button>
-                                        </div>
-                                    </div>
-                            
-                            </form>
-                
-                        </div>
-                    </div>
-                        </div><!-- Fin DIV carousel-item -->
-                    
-                {% endif %}
-                    
-            {% endfor %}
-    
-        {% endfor %}
-   
-    </div> <!-- Fin DIV carousel inner -->
-    
-    <a class="carousel-control-prev" href="#betsCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#betsCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-
-</div><!-- Fin DIV carousel-->
-        
-    <br>     {% endcomment %}
 
 
 

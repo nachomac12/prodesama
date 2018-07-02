@@ -11,12 +11,14 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+
 class Competition(models.Model):
     name = models.CharField(max_length=100)
     available = models.BooleanField(default=False)
 
     def __str__(self):
         return (str(self.name))
+
 
 class Match(models.Model):
     start = models.DateTimeField()
@@ -48,6 +50,7 @@ class Match(models.Model):
 
     def __str__(self):
         return (self.team1.name + " vs " + self.team2.name)
+        
         
 class Bet(models.Model):
     user = models.ForeignKey(User, related_name='bets', blank=True, on_delete=models.CASCADE)
@@ -87,7 +90,7 @@ class CompetitionStat(models.Model):
         for elem in lista:
             for i in elem:
                 if (self.comp == i.match.competition):
-                    if i.calculated == False:
+                    if i.calculated == False and i.match.end_match() == True:
                         self.score += i.result
                         i.calculated = True
                         i.save()

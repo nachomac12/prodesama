@@ -80,15 +80,16 @@ class BetView(generic.DetailView):
     template_name = 'prode/apuestas.html'
 
     def get(self, request):
-        m = Match.objects.all().order_by('start')
-        competitions = Competition.objects.filter(available=True)
+        form = BetForm()
+        m = Match.objects.filter(competition__available=True).order_by('start')
         matchs = []
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
-        form = BetForm()
         bets = Bet.objects.all()
-        args = {'form': form, 'matchs': matchs[:10], 'bets': bets, 'competitions': competitions}
+        competitions = Competition.objects.filter(available=True)
+        args = {'form': form, 'matchs': matchs[:10], 'bets': bets,
+                'competitions': competitions}
         return render(request, self.template_name, args)
 
     def post(self, request):
