@@ -1,0 +1,93 @@
+/* BEGIN SCROLL LISTA DE PARTIDOS */
+* {
+    font-family: sans-serif;    
+}
+
+.lista-proximos-partidos{
+    height: 350px;
+    width: auto;
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+.lista-proximos-partidos::-webkit-scrollbar{
+    display: none;
+}
+/* END SCROLL LISTA DE PARTIDOS */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN MODAL STYLES */
+
+.modal-header{
+    background-color: rgb(44, 44, 44);
+    color: white;
+    font: bolder;
+    font-size: 40px;
+}
+
+/* END MODAL STYLES */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN NAVIGATION.HTML STYLES */
+
+#list_apuestas:hover { 
+    background-color: #007bff;
+    color: white;
+}
+
+#list_puntaje:hover { 
+    background-color: #dc3545;
+    color: white;
+}
+
+#list_datos:hover { 
+    background-color: #28a745;
+    color: white;
+}
+/* END NAVIGATION.HTML STYLES */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN FOOTER */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(255, 255, 246);
+    color: black;
+    text-align: center;
+    height: 8%;
+}
+
+/* END FOOTER */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN PUNTAJE.HTML STYLES */
+
+.box {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid rgb(161, 147, 147);
+    margin: 0 auto;
+}
+
+/* END PUNTAJE.HTML STYLES */
+
+/*------------------------------------------------------------------------------------*/
+
+/* BEGIN OTROS */ 
+.vertical-align-middle { 
+    vertical-align: middle; 
+}
+
+.padding-bottom-3 {
+    padding-bottom: 3px;
+}
+
+/* END OTROS */
+
