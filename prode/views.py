@@ -80,22 +80,19 @@ class BetView(generic.DetailView):
     template_name = 'prode/apuestas.html'
 
     def get(self, request):
-        form = BetForm()
-        m = Match.objects.filter(competition__available=True).order_by('start')
+        m = Match.objects.all().order_by('start')
         matchs = []
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
-        bets = Bet.objects.all()
         competitions = Competition.objects.filter(available=True)
-        args = {'form': form, 'matchs': matchs[:10], 'bets': bets,
-                'competitions': competitions}
+        form = BetForm()
+        bets = Bet.objects.all()
+        args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
         return render(request, self.template_name, args)
 
     def post(self, request):
         bet_id = request.POST.get("bet_id")
-        user_id = request.POST.get("user_id")
-        u = User.objects.get(id=user_id)
         if bet_id:
             bet = Bet.objects.get(pk=bet_id)
             form = BetForm(request.POST, instance=bet)
@@ -109,16 +106,15 @@ class BetView(generic.DetailView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
-            if u.comps.exists()==False:
-                c1 = Competition.objects.get(id=1)
-                c2 = Competition.objects.get(id=2)
-                comp1 = CompetitionStat(user=u, comp=c1)
-                comp1.save()
-                comp2 = CompetitionStat(user=u, comp=c2)
-                comp2.save()
+            if request.user.comps.exists() == False:
+                cs = CompetitionStat()
+                cs.comp = Competition.objects.get(id=2)
+                cs.user = request.user
+                cs.save()
             messages.info(request, "Apuesta realizada!")
-            return redirect ('prode:apuestas')
-        args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
+            return redirect('prode:apuestas')
+        args = {'form': form, 'team1_score': team1_score,
+                'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
 

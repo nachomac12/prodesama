@@ -72,8 +72,8 @@ class Bet(models.Model):
             else: 
                 self.result = 0
             return self.result
-    class Meta:
-        unique_together = ('user', 'match')
+    #class Meta:
+    #    unique_together = ('user', 'match')
 
     def __str__(self):
         return (str(self.match))
