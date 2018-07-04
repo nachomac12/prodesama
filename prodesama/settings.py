@@ -27,7 +27,8 @@ SECRET_KEY = '7!5&@b4#+m7p+=lz($lo8$7@86@!$r&6_jn+xcnipqj-vw7)eu'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'prodesama.herokuapp.com'
+    'prodesama.herokuapp.com',
+    '127.0.0.1'
 ]
 
 

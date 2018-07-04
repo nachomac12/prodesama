@@ -80,21 +80,22 @@ class BetView(generic.DetailView):
     template_name = 'prode/apuestas.html'
 
     def get(self, request):
-        m = Match.objects.all().order_by('start')
+        form = BetForm()
+        m = Match.objects.filter(competition__available=True).order_by('start')
         matchs = []
         for i in m:
             if i.is_unavailable() == False:
                 matchs.append(i)
-        competitions = Competition.objects.filter(available=True)
-        form = BetForm()
         bets = Bet.objects.all()
-        args = {'form': form, 'matchs': matchs, 'bets': bets, 'competitions': competitions}
+        competitions = Competition.objects.filter(available=True)
+        args = {'form': form, 'matchs': matchs[:10], 'bets': bets,
+                'competitions': competitions}
         return render(request, self.template_name, args)
 
     def post(self, request):
         bet_id = request.POST.get("bet_id")
-        if bet_id:
-            bet = Bet.objects.get(pk=bet_id)
+        if bet_id and request.user.bets.get(id=bet_id):
+            bet = Bet.objects.get(id=bet_id)
             form = BetForm(request.POST, instance=bet)
         else:
             form = BetForm(request.POST)
@@ -106,15 +107,14 @@ class BetView(generic.DetailView):
             team2_score = form.cleaned_data.get('team2_score')
             match = form.cleaned_data.get('match')
             form = BetForm()
-            if request.user.comps.exists() == False:
+            if request.user.comps.exists()==False:
                 cs = CompetitionStat()
-                cs.comp = Competition.objects.get(id=2)
                 cs.user = request.user
+                cs.comp = Competition.objects.get(name="Copa Libertadores")
                 cs.save()
             messages.info(request, "Apuesta realizada!")
-            return redirect('prode:apuestas')
-        args = {'form': form, 'team1_score': team1_score,
-                'team2_score': team2_score, 'match': match}
+            return redirect ('prode:apuestas')
+        args = {'form': form, 'team1_score': team1_score, 'team2_score': team2_score, 'match': match}
         return render(request, self.template_name, args)
 
 

@@ -39,8 +39,9 @@
                                 
                                     <form method="POST">
                                         {% csrf_token %}
+                                        <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
                                         {% for bet in bets %}
-                                            {% if match.id == bet.match.id %}
+                                            {% if match.id == bet.match.id and bet.user == user %}
                                                 <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
                                             {% endif %}
                                         {% endfor %}
