@@ -40,10 +40,15 @@ $( document ).ready(function() {
             },
             dataType: 'json',
             success: function (data) {
-                if (data.is_taken) {
-                    msg = '<div id="js-mensaje-usuario" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+data.error_message+'</div>'
-                    $('.username_validado').attr("disabled", true);
-                    $('.js-message').before(msg)
+                if ($('#dropdownMenuButton').html().trim() !== $('#id_username').val()){
+                    if (data.is_taken) {
+                        msg = '<div id="js-mensaje-usuario" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+data.error_message+'</div>'
+                        $('.username_validado').attr("disabled", true);
+                        $('.js-message').before(msg)
+                    } else {
+                        $('.username_validado').attr("disabled", false);
+                        $('#js-mensaje-usuario').remove();
+                    }
                 } else {
                     $('.username_validado').attr("disabled", false);
                     $('#js-mensaje-usuario').remove();
