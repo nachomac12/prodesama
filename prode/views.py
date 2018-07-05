@@ -1,7 +1,7 @@
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views import generic
+from django.views import generic    #TemplateView
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.contrib.auth import login, authenticate, update_session_auth_hash
@@ -14,6 +14,7 @@ from .forms import BetForm
 from django.utils import timezone
 import datetime
 from datetime import timedelta
+import json
 
 
 def signup(request):

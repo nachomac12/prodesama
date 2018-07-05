@@ -37,7 +37,7 @@
 
                                 {% if c.name == match.competition.name %}
                                 
-                                    <form method="POST">
+                                    <form class="form-apuestas" method="POST" action="{% url 'prode:apuestas' %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
                                         {% for bet in bets %}
@@ -85,7 +85,7 @@
                                                                     {{ match.team2.name }}
                                                                 </div>
                                                             </div> <!-- FIN ROW -->
-                                                                <button class="btn btn-success" type="submit">Apostar</button>
+                                                                <button id="btn-apostar"class="btn btn-success" type="submit">Apostar</button>
                                                         </div> <!-- FIN CARD-BODY -->
                                                     
                                                     </div> <!-- FIN COLLAPSE -->
@@ -136,4 +136,3 @@
 </script>
 
 {% endblock %}
-
