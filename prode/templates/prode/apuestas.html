@@ -61,6 +61,11 @@
                                                                     expand_more
                                                                 </i>
                                                             </button>
+                                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#betModal{{match.id}}">
+                                                                <i class="material-icons vertical-align-middle padding-bottom-3">
+                                                                    info
+                                                                </i>
+                                                            </button>
                                                         </h5>   
                                                     </div>
                                                     
@@ -74,10 +79,10 @@
                                                                     {{ match.team1.name }}
                                                                 </div>
                                                                 <div class="col">
-                                                                        {{ form.team1_score }}
+                                                                    {{ form.team1_score }}
                                                                 </div>
                                                                 <div class="col">
-                                                                        {{ form.team2_score }}
+                                                                    {{ form.team2_score }}
                                                                 </div>
                                                                 <div class="col">
                                                                     <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
@@ -125,8 +130,49 @@
     {% endif %}
 </div> <!-- FIN CAROUSEL -->
 
-
-
+<!-- Modal -->
+{% for match in matchs %}
+<div class="modal fade" id="betModal{{match.id}}" tabindex="-1" role="dialog" aria-labelledby="betModal{{match.id}}Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">  
+        <div class="modal-content">
+            <div class="modal-header" id="betModalHeader">
+                <h5 class="modal-title" id="betModal{{match.id}}Label">{{match}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col">
+                        <h5><b>{{ match.team1 }}</b></h5>
+                        <br>
+                        {% for i in match.get_team1_matches %}
+                            <table class="table">
+                                <thead><tr><th>Últimos partidos</th></tr></thead>
+                                <tbody>
+                                    <td>{{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}</td>
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </div>
+                    <div class="col">
+                        <h5><b>{{ match.team2 }}</b></h5>
+                        <br>
+                        {% for i in match.get_team2_matches %}
+                            <table class="table">
+                                <thead><tr><th>Últimos partidos</th></tr></thead>
+                                <tbody>
+                                    <td>{{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}</td>
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 <script>
     window.onload = function(){

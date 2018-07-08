@@ -27,6 +27,9 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(reverse('prode:home'))
+        else:
+            messages.error(request, _('Ingresaste mal algún dato, volvé a registrarte.'))
+            return redirect('prode:index')
     else:
         form = RegistrationForm()
     return render(request, 'prode/signup.html', {'form': form})
@@ -124,7 +127,8 @@ class ScoreView(generic.DetailView):
     def get(self, request):
         comps = Competition.objects.filter(available=True)
         comp_stats = CompetitionStat.objects.all()
-        bets = Bet.objects.all()
+        bets = list(Bet.objects.all())
+        bets.reverse()
         return render(request, self.template_name, {'comps':comps,'comp_stats':comp_stats, 'bets':bets})
 
 

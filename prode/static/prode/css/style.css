@@ -19,12 +19,23 @@
 
 /* BEGIN MODAL STYLES */
 
-.modal-header{
+#authModalHeader {
     background-color: rgb(44, 44, 44);
     color: white;
     font: bolder;
     font-size: 40px;
 }
+
+#authModalHeader .close { color: white }
+
+#betModalHeader {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    font: bolder;
+    font-size: 40px;
+}
+
+#betModalHeader .close { color: white }
 
 /* END MODAL STYLES */
 

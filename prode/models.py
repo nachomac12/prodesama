@@ -8,6 +8,10 @@ from datetime import timedelta
 class Team(models.Model):
     name = models.CharField(max_length=50)
     flag = models.ImageField(upload_to='prode/images/flags/')
+    
+    def team_matches(self):
+        self.matches.all()
+    
     def __str__(self):
         return self.name
 
@@ -23,8 +27,8 @@ class Competition(models.Model):
 class Match(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
-    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='+')
-    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='+')
+    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='matches')
+    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='matchs')
     team1_score = models.PositiveIntegerField(default=0)
     team2_score = models.PositiveIntegerField(default=0)
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE, null=True)
@@ -48,8 +52,26 @@ class Match(models.Model):
         start = self.start - timedelta(hours=1)
         return now >= start
 
+    def get_team1_matches(self):
+        matches = list(Match.objects.all())
+        team_matches = []
+        for match in matches:
+            if match.id != self.id and match.end_match():
+                if match.team1 == self.team1 or match.team2 == self.team1:
+                    team_matches.append(match)
+        return team_matches
+
+    def get_team2_matches(self):
+        matches = list(Match.objects.all())
+        team_matches = []
+        for match in matches:
+            if match.id != self.id and match.end_match():
+                if match.team1 == self.team2 or match.team2 == self.team2:
+                    team_matches.append(match)
+        return team_matches
+
     def __str__(self):
-        return (self.team1.name + " vs " + self.team2.name)
+        return (self.team1.name + " [ " + str(self.team1_score) + " ]"  + " - " + " [ " + str(self.team2_score) + " ] " + self.team2.name)
         
         
 class Bet(models.Model):
