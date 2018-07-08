@@ -11,7 +11,6 @@
     }
 </style>
 
-{% include 'prode/messages.html' %}
 
     
 <div id="betsCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -25,9 +24,12 @@
                 <div class="carousel-item">
             {% endif %}    
                 
-            <h2 class="text-light text-center" style="font-family: serif">
-                <strong>{{c.name}}</strong>
-            </h2>
+            <h1 class="text-light text-center">
+                <div id="competitionTitle">
+                    {{c.name}}
+                </div>
+            </h1>
+            <br>
       
                     <div class="row text-center">
 
@@ -39,7 +41,6 @@
                                 
                                     <form class="form-apuestas" method="POST" action="{% url 'prode:apuestas' %}">
                                         {% csrf_token %}
-                                        <input type="hidden" name="user_id" id="user_id" value="{{ user.id }}" formmethod="GET">
                                         {% for bet in bets %}
                                             {% if match.id == bet.match.id and bet.user == user %}
                                                 <input type="hidden" name="bet_id" id="bet_id" value="{{ bet.id }}" formmethod="GET">
@@ -52,6 +53,7 @@
                                                 <div class="card">
                                                     
                                                     <div class="card-header" id="heading{{ forloop.counter }}" style="background: rgb(76, 167, 65)">
+                                                        {% include 'prode/messages.html' %}
                                                         <h5 class="mb-0">    
                                                             <button {% if forloop.first %} class="btn btn-link text-white" aria-expanded="true" {% else %} class="btn btn-link collapsed text-white" aria-expanded="false"{% endif %}
                                                                 type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-controls="collapse{{ forloop.counter }}">
@@ -146,26 +148,30 @@
                     <div class="col">
                         <h5><b>{{ match.team1 }}</b></h5>
                         <br>
-                        {% for i in match.get_team1_matches %}
-                            <table class="table">
-                                <thead><tr><th>Últimos partidos</th></tr></thead>
+                        <table class="table">
+                            <thead><tr><th>Últimos partidos</th></tr></thead>
+                            {% for i in match.get_team1_matches %}
                                 <tbody>
-                                    <td>{{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}</td>
+                                    <td>
+                                        {{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}
+                                    </td>    
                                 </tbody>
-                            </table>
-                        {% endfor %}
+                            {% endfor %}
+                        </table>
                     </div>
                     <div class="col">
                         <h5><b>{{ match.team2 }}</b></h5>
                         <br>
-                        {% for i in match.get_team2_matches %}
-                            <table class="table">
-                                <thead><tr><th>Últimos partidos</th></tr></thead>
+                        <table class="table">
+                            <thead><tr><th>Últimos partidos</th></tr></thead>
+                            {% for i in match.get_team2_matches %}
                                 <tbody>
-                                    <td>{{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}</td>
+                                    <td>
+                                        {{ i.team1 }} {{ i.team1_score }} - {{ i.team2 }} {{ i.team2_score }}
+                                    </td>    
                                 </tbody>
-                            </table>
-                        {% endfor %}
+                            {% endfor %}
+                        </table>
                     </div>
                 </div>
             </div>

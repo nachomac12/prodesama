@@ -102,3 +102,10 @@
 
 /* END OTROS */
 
+
+#competitionTitle { 
+background-color: rgb(116, 189, 108); 
+border: rgb(243, 239, 239) 2px solid; 
+border-radius: 20px;
+padding: 6px 6px 0px 6px;
+}

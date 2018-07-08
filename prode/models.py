@@ -71,7 +71,7 @@ class Match(models.Model):
         return team_matches
 
     def __str__(self):
-        return (self.team1.name + " [ " + str(self.team1_score) + " ]"  + " - " + " [ " + str(self.team2_score) + " ] " + self.team2.name)
+        return (self.team1.name + " - " + self.team2.name)
         
         
 class Bet(models.Model):
