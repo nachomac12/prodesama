@@ -35,10 +35,11 @@
 
                         <div class="col-md-6 offset-md-3">
                             
+                            <div class="lista-apuestas">
                             {% for match in matchs %}
 
                                 {% if c.name == match.competition.name %}
-                                
+                                {% include 'prode/messages.html' %}
                                     <form class="form-apuestas" method="POST" action="{% url 'prode:apuestas' %}">
                                         {% csrf_token %}
                                         {% for bet in bets %}
@@ -47,18 +48,14 @@
                                             {% endif %}
                                         {% endfor %}
                                         <input type="hidden" name="match" id="match" value="{{ match.id }}">
-                                            
-                                            <div class="accordion" id="accordionBet">
+
+                                            <div id="accordionBet">
     
-                                                <div class="card">
-                                                    
-                                                    <div class="card-header" id="heading{{ forloop.counter }}" style="background: rgb(76, 167, 65)">
-                                                        {% include 'prode/messages.html' %}
-                                                        <h5 class="mb-0">    
-                                                            <button {% if forloop.first %} class="btn btn-link text-white" aria-expanded="true" {% else %} class="btn btn-link collapsed text-white" aria-expanded="false"{% endif %}
-                                                                type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-controls="collapse{{ forloop.counter }}">
-                                                                {{ match }} |
-                                                                {{ match.start|date:'d-m-Y' }}
+                                                <div class="card">                                                    
+                                                    <div class="card-header" id="heading{{match.id}}" style="background: rgb(76, 167, 65)">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link text-white" aria-expanded="false" type="button" data-toggle="collapse" data-target="#collapse{{match.id}}" aria-controls="collapse{{match.id}}">
+                                                                {{ match }} | {{ match.start|date:'d-m-Y' }}
                                                                 <i class="material-icons vertical-align-middle padding-bottom-3">
                                                                     expand_more
                                                                 </i>
@@ -69,9 +66,9 @@
                                                                 </i>
                                                             </button>
                                                         </h5>   
-                                                    </div>
+                                                    </div> <!--FIN CARD-HEADER-->
                                                     
-                                                    <div id="collapse{{ forloop.counter }}" {% if forloop.first %} class="collapse show" {% else %} class="collapse" {% endif %} aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordionBet">
+                                                    <div id="collapse{{match.id}}" class="collapse" aria-labelledby="heading{{match.id}}" data-parent="#accordionBet">
                                                             
                                                         <div class="card-body">
                                                             <div class="row">
@@ -81,10 +78,12 @@
                                                                     {{ match.team1.name }}
                                                                 </div>
                                                                 <div class="col">
-                                                                    {{ form.team1_score }}
+                                                                    <input type="number" name="team1_score" class="form-control text-center" placeholder="Goal" min="0" max="15" required="" id="id_team1_score"
+                                                                    {% for bet in bets %} {% if match.id == bet.match.id and bet.user == user %} value="{{bet.team1_score}}" {% endif %} {% endfor %}>
                                                                 </div>
                                                                 <div class="col">
-                                                                    {{ form.team2_score }}
+                                                                    <input type="number" name="team2_score" class="form-control text-center" placeholder="Goal" min="0" max="15" required="" id="id_team2_score"
+                                                                    {% for bet in bets %} {% if match.id == bet.match.id and bet.user == user %} value="{{bet.team2_score}}" {% endif %} {% endfor %}>
                                                                 </div>
                                                                 <div class="col">
                                                                     <img src="{{ '/static/' }}{{ match.team2.flag }}" alt="Bandera">
@@ -100,14 +99,16 @@
                                                 </div> <!-- FIN CARD -->
                                     
                                             </div> <!-- FIN ACCORDION -->
-                                                
+                                        
+                                    
                                     </form>
                                     <br>
+                                
 
                                 {% endif %}
 
                             {% endfor %} <!-- end matchs for -->
-
+                            </div> <!-- FIN LISTA-APUESTAS -->
                         </div> <!-- FIN COL -->
                     
                     </div> <!-- FIN ROW -->
@@ -146,7 +147,7 @@
             <div class="modal-body">
                 <div class="row text-center">
                     <div class="col">
-                        <h5><b>{{ match.team1 }}</b></h5>
+                        <h5><b><u>{{ match.team1 }}</u></b></h5>
                         <br>
                         <table class="table">
                             <thead><tr><th>Últimos partidos</th></tr></thead>
@@ -160,7 +161,7 @@
                         </table>
                     </div>
                     <div class="col">
-                        <h5><b>{{ match.team2 }}</b></h5>
+                        <h5><b><u>{{ match.team2 }}</u></b></h5>
                         <br>
                         <table class="table">
                             <thead><tr><th>Últimos partidos</th></tr></thead>

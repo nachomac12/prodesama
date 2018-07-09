@@ -13,6 +13,17 @@
 .lista-proximos-partidos::-webkit-scrollbar{
     display: none;
 }
+
+.lista-apuestas{
+    height: 500px;
+    width: auto;
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+.lista-apuestas::-webkit-scrollbar{
+    display: none;
+}
 /* END SCROLL LISTA DE PARTIDOS */
 
 /*------------------------------------------------------------------------------------*/
